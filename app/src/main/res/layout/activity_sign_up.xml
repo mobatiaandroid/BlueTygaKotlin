@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signup"
+    tools:context=".activity.common.SignUpActivity">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:srcCompat="@drawable/vkc_logo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:id="@+id/llMobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                    android:id="@+id/editMobile"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_line_small"
+                    android:hint="Mobile"
+                    android:inputType="phone"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageGetData"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="85"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageGetData"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="15"
+                    app:layout_constraintStart_toEndOf="@+id/editMobile"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/search" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llCustId"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                    android:id="@+id/editCustomerID"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_line_small"
+                    android:hint="Customer ID"
+                    android:imeOptions="actionSend"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageSearchID"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="85"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageSearchID"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="15"
+                    app:layout_constraintStart_toEndOf="@+id/editCustomerID"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/search" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/llUserType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:orientation="horizontal">
+
+
+                <!--  <AutoCompleteTextView
+                          android:id="@+id/autoSearch"
+                          android:layout_width="0dp"
+                          android:layout_height="match_parent"
+                          android:layout_gravity="center"
+                          android:layout_weight=".90"
+                          android:background="@null"
+                          android:hint="Select User"
+                          android:paddingLeft="10dp"
+                          android:singleLine="true"
+                          android:textColor="@color/white"
+                          android:textSize="14sp" />-->
+                <Spinner
+                    android:id="@+id/spinnerUserType"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight=".90"
+                    android:background="@null"
+                    android:hint="State"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_weight=".15"
+                    app:srcCompat="@drawable/arrow_down" />
+            </LinearLayout>
+
+            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                android:id="@+id/editOwner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:hint="Owner Name "
+                android:inputType="textCapCharacters"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+
+                android:textSize="14dp" />
+
+            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                android:id="@+id/editShop"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:hint="Shop Name"
+                android:inputType="textCapCharacters"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:singleLine="true"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:id="@+id/llAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                    android:id="@+id/editDoor"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_line_small"
+                    android:hint="Door No."
+                    android:inputType="textCapCharacters"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:singleLine="true"
+                    android:textSize="14dp" />
+
+                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                    android:id="@+id/editAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_line_small"
+                    android:hint="Address Line 1"
+                    android:inputType="textCapCharacters"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:singleLine="true"
+                    android:textSize="14dp" />
+
+                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                    android:id="@+id/editLandMark"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_line_small"
+                    android:hint="Landmark"
+                    android:inputType="textCapCharacters"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:singleLine="true"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:orientation="horizontal">
+
+
+                <!--  <AutoCompleteTextView
+                          android:id="@+id/autoSearch"
+                          android:layout_width="0dp"
+                          android:layout_height="match_parent"
+                          android:layout_gravity="center"
+                          android:layout_weight=".90"
+                          android:background="@null"
+                          android:hint="Select User"
+                          android:paddingLeft="10dp"
+                          android:singleLine="true"
+                          android:textColor="@color/white"
+                          android:textSize="14sp" />-->
+                <Spinner
+                    android:id="@+id/spinnerState"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight=".90"
+                    android:background="@null"
+                    android:hint="State"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_weight=".15"
+                    app:srcCompat="@drawable/arrow_down" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:orientation="horizontal">
+
+
+                <!--  <AutoCompleteTextView
+                          android:id="@+id/autoSearch"
+                          android:layout_width="0dp"
+                          android:layout_height="match_parent"
+                          android:layout_gravity="center"
+                          android:layout_weight=".90"
+                          android:background="@null"
+                          android:hint="Select User"
+                          android:paddingLeft="10dp"
+                          android:singleLine="true"
+                          android:textColor="@color/white"
+                          android:textSize="14sp" />-->
+                <Spinner
+                    android:id="@+id/spinnerDistrict"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight=".90"
+                    android:background="@null"
+                    android:hint="District"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+
+                    android:textAllCaps="true"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_weight=".15"
+                    app:srcCompat="@drawable/arrow_down" />
+            </LinearLayout>
+
+
+            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                android:id="@+id/editPlace"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:hint="Place"
+                android:inputType="textCapCharacters"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textCursorDrawable="@null"
+                android:textSize="14dp" />
+
+            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                android:id="@+id/editPin"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_line_small"
+                android:hint="Pin"
+                android:inputType="number"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:singleLine="true"
+                android:textSize="14dp" />
+
+
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_rect_line"
+                android:text="SUBMIT"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
