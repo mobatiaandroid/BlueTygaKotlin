@@ -1,7 +1,16 @@
 package com.vkc.bluetyga.api
 
 import com.vkc.bluetyga.activity.common.model.district.DistrictResponseModel
+import com.vkc.bluetyga.activity.common.model.new_register.NewRegisterMainResponseModel
+import com.vkc.bluetyga.activity.common.model.register.RegisterMainResponseModel
+import com.vkc.bluetyga.activity.common.model.resend_otp.ResendOTPMainResponse
 import com.vkc.bluetyga.activity.common.model.state.StateResponseModel
+import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainResponseModel
+import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
+import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseModel
+import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
+import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
+import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -19,76 +28,85 @@ interface ApiService {
         @Field("state") stateId: String
     ): Call<DistrictResponseModel>
 
-//    @FormUrlEncoded
-//    @POST("getuserdetailswithMobile")
-//    fun getUserDetailsResponse(
-//        @Field("mobile") mobileNo: String,
-//        @Field("customer_id") customerID: String,
-//        @Field("imei_no") imeiNo: String
-//    ): Call<UserDetailsResponseModel>
+    @FormUrlEncoded
+    @POST("getuserdetailswithMobile")
+    fun getUserDetailsResponse(
+        @Field("mobile") mobileNo: String,
+        @Field("customer_id") customerID: String,
+        @Field("imei_no") imeiNo: String
+    ): Call<UserDetailsMainResponseModel>
 
-//    @FormUrlEncoded
-//    @POST("registration")
-//    fun getRegisterResponse(
-//        @Field("phone") phone: String,
-//        @Field("role") role: String,
-//        @Field("cust_id") customerID: String,
-//        @Field("contact_person") owner: String,
-//        @Field("city") city:String
-//    ): Call<RegisterModel>
-//
-//    @FormUrlEncoded
-//    @POST("newRegRequest")
-//    fun getNewRegisterResponse(
-//        @Field("customer_id") customerID: String,
-//        @Field("shop_name") shopName: String,
-//        @Field("state_name") stateName: String,
-//        @Field("district") district: String,
-//        @Field("city") city: String,
-//        @Field("pincode") pincode: String,
-//        @Field("contact_person") contactPerson: String,
-//        @Field("phone") phone: String,
-//        @Field("door_no") doorNo: String,
-//        @Field("address_line1") addressLine1: String,
-//        @Field("landmark") landmark: String,
-//        @Field("user_type") userType: String
-//    ): Call<NewRegisterModel>
-//
-//    @FormUrlEncoded
-//    @POST("OTP_verification")
-//    fun getVerifyOTPResponse(
-//        @Field("otp") otp: String,
-//        @Field("role") role: String,
-//        @Field("cust_id") customerID: String,
-//        @Field("phone") mobileNo: String,
-//        @Field("isnewMobile") isNewMobile: String
-//    ): Call<VerifyOTPModel>
-//
-//    @FormUrlEncoded
-//    @POST("resend_otp")
-//    fun getResendOTPResponse(
-//        @Field("role") role: String,
-//        @Field("cust_id") customerID: String
-//    ): Call<ResendOTPModel>
-//
-//    @FormUrlEncoded
-//    @POST("getLoyalityPoints")
-//    fun getMyPointsResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String
-//    ): Call<MyPointsModel>
-//
-//    @POST("loyalty_dubai_appversion")
-//    fun getAppVersionResponse(): Call<AppVersionModel>
-//
-//    @FormUrlEncoded
-//    @POST("device_registration")
-//    fun getDeviceRegistrationResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String,
-//        @Field("device_id") deviceID: String
-//    ): Call<DeviceRegistrationModel>
-//
+    @FormUrlEncoded
+    @POST("registration")
+    fun getRegisterResponse(
+        @Field("phone") phone: String,
+        @Field("role") role: String,
+        @Field("cust_id") customerID: String,
+        @Field("contact_person") owner: String,
+        @Field("city") city:String
+    ): Call<RegisterMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("OTP_verification")
+    fun getVerifyOTPResponse(
+        @Field("otp") otp: String,
+        @Field("role") role: String,
+        @Field("cust_id") customerID: String,
+        @Field("phone") mobileNo: String,
+        @Field("isnewMobile") isNewMobile: String
+    ): Call<VerifyOTPMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("newRegRequest")
+    fun getNewRegisterResponse(
+        @Field("customer_id") customerID: String,
+        @Field("shop_name") shopName: String,
+        @Field("state_name") stateName: String,
+        @Field("district") district: String,
+        @Field("city") city: String,
+        @Field("pincode") pincode: String,
+        @Field("contact_person") contactPerson: String,
+        @Field("phone") phone: String,
+        @Field("door_no") doorNo: String,
+        @Field("address_line1") addressLine1: String,
+        @Field("landmark") landmark: String,
+        @Field("user_type") userType: String
+    ): Call<NewRegisterMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("resend_otp")
+    fun getResendOTPResponse(
+        @Field("role") role: String,
+        @Field("cust_id") customerID: String
+    ): Call<ResendOTPMainResponse>
+
+
+    @FormUrlEncoded
+    @POST("getLoyalityPoints")
+    fun getLoyaltyPointsResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
+    ): Call<LoyaltyPointsMainResponseModel>
+
+    @POST("loyalty_appversion")
+    fun getAppVersionResponse(): Call<AppVersionMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("device_registration")
+    fun getDeviceRegistrationResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String,
+        @Field("device_id") deviceID: String
+    ): Call<RegisterDeviceMainResponseModel>
+
+
+    @FormUrlEncoded
+    @POST("getProfile")
+    fun getProfileResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
+    ): Call<ProfileMainResponseModel>
+
 //    @FormUrlEncoded
 //    @POST("getDealerswithState")
 //    fun getDealersResponse(
@@ -112,14 +130,7 @@ interface ApiService {
 //        @Field("role") role: String,
 //        @Field("phone") phone: String
 //    ): Call<UpdatePhoneModel>
-//
-//    @FormUrlEncoded
-//    @POST("getProfile")
-//    fun getProfileResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String
-//    ): Call<ProfileModel>
-//
+
 //    @FormUrlEncoded
 //    @POST("NotificationsList")
 //    fun getNotificationResponse(

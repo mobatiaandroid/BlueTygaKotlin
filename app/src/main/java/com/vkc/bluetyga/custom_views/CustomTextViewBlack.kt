@@ -1,12 +1,12 @@
-package com.vkc.bluetyga.activity.custom_views
+package com.vkc.bluetyga.custom_views
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import com.vkc.bluetyga.R
 
-
-internal class CustomTextViewStylish : AppCompatTextView {
+internal class CustomTextViewBlack : AppCompatTextView {
     constructor(context: Context?) : super(context!!) {
         setFont()
     }
@@ -28,7 +28,8 @@ internal class CustomTextViewStylish : AppCompatTextView {
 
     private fun setFont() {
         val font =
-            Typeface.createFromAsset(context.assets, "fonts/HighlandGothic.ttf")
-            setTypeface(font, Typeface.NORMAL);
+            Typeface.createFromAsset(context.assets, "fonts/arial.ttf")
+        //    setTypeface(font, Typeface.NORMAL);
+        setTextColor(context.resources.getColor(R.color.black))
     }
 }

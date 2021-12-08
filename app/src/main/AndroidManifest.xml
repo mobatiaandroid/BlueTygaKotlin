@@ -6,15 +6,42 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueTygaKotlin">
+        <activity
+            android:name=".activity.issue_point.IssuePointDealerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.issue_point.IssuePointActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.inbox.InboxActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.gifts.GiftsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.dealer_redeem_list.RedeemListDealerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.sub_dealer_redeem.SubDealerRedeemActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.shop_image.ShopImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.point_history.PointHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.profile.ProfileActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.dealers.DealersActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.common.SignUpActivity"
             android:exported="true"
@@ -22,6 +49,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,24 +57,32 @@
             android:name=".activity.home.HomeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
         <activity
             android:name=".activity.common.TermsAndConditionsActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.common.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

@@ -63,7 +63,7 @@ class PreferenceManager {
             )
             editor = settings.edit()
             editor.putString("loginstatus", text)
-            editor.commit()
+            editor.apply()
         }
 
         fun getAgreeTerms(context: Context): Boolean {
@@ -82,7 +82,7 @@ class PreferenceManager {
             )
             editor = settings.edit()
             editor.putBoolean("terms", text)
-            editor.commit()
+            editor.apply()
         }
 
         fun getIsVerifiedOTP(context: Context): String {
@@ -101,7 +101,7 @@ class PreferenceManager {
             )
             val editor: SharedPreferences.Editor = settings.edit()
             editor.putString("otp_status", text)
-            editor.commit()
+            editor.apply()
         }
 
         fun getDealerCount(context: Context): Int {
@@ -121,7 +121,7 @@ class PreferenceManager {
             )
             val editor: SharedPreferences.Editor = settings.edit()
             editor.putInt("dealer_count", text)
-            editor.commit()
+            editor.apply()
         }
 
         fun setMobileNo(context: Context, mobileNo: String) {
@@ -131,7 +131,7 @@ class PreferenceManager {
             )
             val editor: SharedPreferences.Editor = settings.edit()
             editor.putString("mobile", mobileNo)
-            editor.commit()
+            editor.apply()
         }
         fun getMobile(context: Context): String? {
             val text: String?
@@ -151,7 +151,7 @@ class PreferenceManager {
             val editor: SharedPreferences.Editor = settings.edit()
 
             editor.putString("custId", customerId)
-            editor.commit()
+            editor.apply()
         }
         fun getCustomerID(context: Context): String {
             val settings: SharedPreferences = context.getSharedPreferences(
@@ -170,7 +170,7 @@ class PreferenceManager {
             )
             val editor: SharedPreferences.Editor = settings.edit()
             editor.putString(USERTYPE, role)
-            editor.commit()
+            editor.apply()
         }
 
         fun getUserType(context: Context): String {
@@ -191,7 +191,7 @@ class PreferenceManager {
             )
             editor = settings.edit()
             editor.putString("token", text)
-            editor.commit()
+            editor.apply()
         }
         fun getToken(context: Context): String {
             val text: String?
@@ -200,6 +200,25 @@ class PreferenceManager {
                 Context.MODE_PRIVATE
             )
             text = settings.getString("token", "")
+            return text!!
+        }
+
+        fun setUserID(context: Context, role: String) {
+            val settings: SharedPreferences = context.getSharedPreferences(
+                PREFS_NAME,
+                Context.MODE_PRIVATE
+            )
+            val editor: SharedPreferences.Editor = settings.edit()
+            editor.putString(USERID, role)
+            editor.apply()
+        }
+        fun getUserID(context: Context): String{
+            val text: String?
+            val settings: SharedPreferences = context.getSharedPreferences(
+                PREFS_NAME,
+                Context.MODE_PRIVATE
+            )
+            text = settings.getString(USERID, "")
             return text!!
         }
 

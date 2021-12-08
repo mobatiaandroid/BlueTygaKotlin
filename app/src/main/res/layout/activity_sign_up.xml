@@ -63,7 +63,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editMobile"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
@@ -104,7 +104,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editCustomerID"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
@@ -183,7 +183,7 @@
                     app:srcCompat="@drawable/arrow_down" />
             </LinearLayout>
 
-            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+            <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editOwner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -198,7 +198,7 @@
 
                 android:textSize="14dp" />
 
-            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+            <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editShop"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editDoor"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -230,7 +230,7 @@
                     android:singleLine="true"
                     android:textSize="14dp" />
 
-                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editAddress"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -243,7 +243,7 @@
                     android:singleLine="true"
                     android:textSize="14dp" />
 
-                <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+                <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editLandMark"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -342,7 +342,7 @@
             </LinearLayout>
 
 
-            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+            <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editPlace"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -357,7 +357,7 @@
                 android:textCursorDrawable="@null"
                 android:textSize="14dp" />
 
-            <com.vkc.bluetyga.activity.custom_views.CustomEditTextWhite
+            <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editPin"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

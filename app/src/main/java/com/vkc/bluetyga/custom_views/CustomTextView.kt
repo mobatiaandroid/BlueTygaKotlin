@@ -1,16 +1,15 @@
-package com.vkc.bluetyga.activity.custom_views
+package com.vkc.bluetyga.custom_views
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
-import com.vkc.bluetyga.R
+import androidx.appcompat.widget.AppCompatTextView
 
-
-internal class CustomEditTextWhite : AppCompatEditText {
+internal class CustomTextView : AppCompatTextView {
     constructor(context: Context?) : super(context!!) {
         setFont()
     }
+
     constructor(context: Context?, attrs: AttributeSet?) : super(
         context!!,
         attrs
@@ -27,9 +26,9 @@ internal class CustomEditTextWhite : AppCompatEditText {
     }
 
     private fun setFont() {
-        val font = Typeface.createFromAsset(context.assets, "fonts/arial.ttf")
-        setTypeface(font, Typeface.NORMAL)
-        setTextColor(context.resources.getColor(R.color.white))
+        val font =
+            Typeface.createFromAsset(context.assets, "fonts/arial.ttf")
+        typeface = font
     }
-
 }
+
