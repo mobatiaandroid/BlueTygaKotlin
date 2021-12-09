@@ -10,11 +10,13 @@ import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseMo
 import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseModel
 import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
+import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
+import com.vkc.bluetyga.activity.profile.model.update_profile.UpdateProfileMainResponseModel
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ApiService {
@@ -123,13 +125,13 @@ interface ApiService {
 //        @Field("dealer_id") dealerID: String
 //    ): Call<SubmitDealersModel>
 //
-//    @FormUrlEncoded
-//    @POST("phoneUpdateOTP")
-//    fun getPhoneUpdateResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String,
-//        @Field("phone") phone: String
-//    ): Call<UpdatePhoneModel>
+    @FormUrlEncoded
+    @POST("phoneUpdateOTP")
+    fun getPhoneUpdateResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String,
+        @Field("phone") phone: String
+    ): Call<UpdatePhoneOTPMainResponseModel>
 
 //    @FormUrlEncoded
 //    @POST("NotificationsList")
@@ -169,28 +171,28 @@ interface ApiService {
 //        @Field("type") type: String
 //    ): Call<TransactionModel>
 //
-//    @Multipart
-//    @POST("profile_updation")
-//    fun getUpdateProfileResponse(
-//        @Part("cust_id") customerID: RequestBody,
-//        @Part("role") role: RequestBody,
-//        @Part("phone") mobileNo: RequestBody,
-//        @Part("contact_person") contactPerson: RequestBody,
-//        @Part("city") city: RequestBody,
-//        @Part("phone2") mobileNo2: RequestBody,
-//        @Part("email") email: RequestBody,
-//        @Part image: MultipartBody.Part
-//    ): Call<UpdateProfileModel>
-//
-//    @Multipart
-//    @POST("profile_updation")
-//    fun getUpdateProfileResponseNoImage(
-//        @Part("cust_id") customerID: RequestBody,
-//        @Part("role") role: RequestBody,
-//        @Part("phone") mobileNo: RequestBody,
-//        @Part("contact_person") contactPerson: RequestBody,
-//        @Part("city") city: RequestBody,
-//        @Part("phone2") mobileNo2: RequestBody,
-//        @Part("email") email: RequestBody
-//    ): Call<UpdateProfileModel>
+    @Multipart
+    @POST("profile_updation")
+    fun getUpdateProfileResponse(
+    @Part("cust_id") customerID: RequestBody,
+    @Part("role") role: RequestBody,
+    @Part("phone") mobileNo: RequestBody,
+    @Part("contact_person") contactPerson: RequestBody,
+    @Part("city") city: RequestBody,
+    @Part("phone2") mobileNo2: RequestBody,
+    @Part("email") email: RequestBody,
+    @Part image: MultipartBody.Part
+    ): Call<UpdateProfileMainResponseModel>
+
+    @Multipart
+    @POST("profile_updation")
+    fun getUpdateProfileResponseNoImage(
+        @Part("cust_id") customerID: RequestBody,
+        @Part("role") role: RequestBody,
+        @Part("phone") mobileNo: RequestBody,
+        @Part("contact_person") contactPerson: RequestBody,
+        @Part("city") city: RequestBody,
+        @Part("phone2") mobileNo2: RequestBody,
+        @Part("email") email: RequestBody
+    ): Call<UpdateProfileMainResponseModel>
 }

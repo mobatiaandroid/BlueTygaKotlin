@@ -15,4 +15,7 @@
     <string name="my_customers">My Customers</string>
     <string name="redeem_report">Redeem Report</string>
     <string name="redeem_report_detail">Redeem Report Detail</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="cancel">Cancel</string>
+    <string name="resend_otp">Resend OTP</string>
 </resources>

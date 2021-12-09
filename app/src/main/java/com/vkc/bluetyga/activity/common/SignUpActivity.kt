@@ -32,6 +32,8 @@ import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainRespon
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
 import com.vkc.bluetyga.activity.dealers.DealersActivity
 import com.vkc.bluetyga.activity.home.HomeActivity
+import com.vkc.bluetyga.manager.GenericKeyEvent
+import com.vkc.bluetyga.manager.GenericTextWatcher
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
@@ -971,62 +973,6 @@ class SignUpActivity : AppCompatActivity() {
             })
         }
     }
-    class GenericKeyEvent(private val currentView: EditText, private val previousView: EditText?) :
-        View.OnKeyListener {
-        override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-            if (event!!.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL && currentView.id != R.id.editOtp1 && currentView.text.isEmpty()) {
-                previousView!!.text = null
-                previousView.requestFocus()
-                return true
-            }
-            return false
-        }
 
-    }
 
-    class GenericTextWatcher(private val currentView: View, private val nextView: View?) :
-        TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        }
-
-        override fun afterTextChanged(s: Editable?) {
-            val text = s.toString()
-            when (currentView.id) {
-                R.id.editOtp1 -> {
-                    if (text.length == 1) {
-                        nextView!!.requestFocus()
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_full_white)
-                    } else if (text.isEmpty()){
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_line)
-                    }
-                }
-                R.id.editOtp2 -> {
-                    if (text.length == 1) {
-                        nextView!!.requestFocus()
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_full_white)
-                    } else if (text.isEmpty()){
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_line)
-                    }
-                }
-                R.id.editOtp3 -> {
-                    if (text.length == 1) {
-                        nextView!!.requestFocus()
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_full_white)
-                    } else if (text.isEmpty()){
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_line)
-                    }
-                }
-                R.id.editOtp4 -> {
-                    if (text.length == 1) {
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_full_white)
-                    } else if (text.isEmpty()){
-                        currentView.setBackgroundResource(R.drawable.rounded_rect_line)
-                    }
-                }
-            }
-        }
-    }
 }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "731270353754",
+    "firebase_url": "https://vkc-bluetyga.firebaseio.com",
+    "project_id": "vkc-bluetyga",
+    "storage_bucket": "vkc-bluetyga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731270353754:android:fd9b28abdbc1c0f8",
+        "android_client_info": {
+          "package_name": "com.vkc.bluetyga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731270353754-4qvu8atidvkhn8nu45dgchdrsbqr1u9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvyWTy4MOWvzUWqy2w_O20BCai4LaveGI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

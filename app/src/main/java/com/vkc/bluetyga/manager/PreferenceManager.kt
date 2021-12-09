@@ -133,13 +133,13 @@ class PreferenceManager {
             editor.putString("mobile", mobileNo)
             editor.apply()
         }
-        fun getMobile(context: Context): String? {
-            val text: String?
+        fun getMobile(context: Context): String {
+            val text: String
             val settings: SharedPreferences = context.getSharedPreferences(
                 PREFS_NAME,
                 Context.MODE_PRIVATE
             )
-            text = settings.getString("mobile", "0")
+            text = settings.getString("mobile", "0").toString()
             return text
         }
 

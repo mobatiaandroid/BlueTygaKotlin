@@ -6,9 +6,19 @@
         <entry key="../../../Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_item.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/dotted_line.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.18645833333333334" />
+        <entry key="app/src/main/res/drawable/rounded_line_small.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_line_small_radius.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_blue.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_edittext.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_full_white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_line.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_redline.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_rect_yellow.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dealers.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_inbox.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_my_customers.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
@@ -17,7 +27,8 @@
         <entry key="app/src/main/res/layout/custom_toast.xml" value="0.67" />
         <entry key="app/src/main/res/layout/dialog_alert.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_otp_alert.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_update.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_otp_alert_no_resend.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_update.xml" value="0.16" />
         <entry key="app/src/main/res/layout/progress_bar_dialog.xml" value="0.1" />
       </map>
     </option>
