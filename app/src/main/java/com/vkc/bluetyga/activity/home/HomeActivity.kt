@@ -3,7 +3,6 @@ package com.vkc.bluetyga.activity.home
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.graphics.Color
@@ -36,7 +35,7 @@ import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
-import com.vkc.loyaltyme.api.ApiClient
+import com.vkc.bluetyga.api.ApiClient
 import devlight.io.library.ArcProgressStackView
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,7 +71,93 @@ class HomeActivity : AppCompatActivity() {
         getAppVersion()
         getMyPoints()
     }
+    private fun initialiseUI() {
+        textPoints = findViewById(R.id.textPoints)
+        textNoPoints = findViewById(R.id.textNoPoints)
+        textVersion = findViewById(R.id.textVersion)
+        updateAppView = findViewById(R.id.updateAppView)
+        llDescription = findViewById(R.id.llDescription)
+        llInbox = findViewById(R.id.llInbox)
+        llPoints = findViewById(R.id.llPoints)
+        llGifts = findViewById(R.id.llGifts)
+        llProfile = findViewById(R.id.llProfile)
+        llShop = findViewById(R.id.llShop)
+        arcProgress = findViewById(R.id.arc_progress)
+        arcProgressStackView = findViewById(R.id.arcProgressStackView)
+        buttonIssue = findViewById(R.id.buttonIssue)
+        progressBarDialog = ProgressBarDialog(context)
 
+        arcProgress.suffixText = ""
+        arcProgress.strokeWidth = 15f
+        arcProgress.max = 10000000
+        arcProgress.bottomTextSize = 80f
+        arcProgress.unfinishedStrokeColor = getColor(R.color.white)
+        arcProgress.textColor = getColor(R.color.white)
+        arcProgress.setBackgroundColor(getColor(R.color.transparent))
+
+        llProfile.setOnClickListener {
+            startActivity(Intent(
+                this@HomeActivity, ProfileActivity::class.java))
+        }
+        llPoints.setOnClickListener {
+            startActivity(Intent(
+                this@HomeActivity, PointHistoryActivity::class.java))
+        }
+        llShop.setOnClickListener {
+            startActivity(Intent(
+                this@HomeActivity, ShopImageActivity::class.java))
+        }
+        llGifts.setOnClickListener {
+            if (PreferenceManager.getUserType(context) == "7") {
+                startActivity(Intent(
+                    this@HomeActivity, SubDealerRedeemActivity::class.java))
+            } else if (PreferenceManager.getUserType(context) == "6") {
+                startActivity(Intent(
+                    this@HomeActivity, RedeemListDealerActivity::class.java))
+            } else {
+                startActivity(Intent(
+                    this@HomeActivity, GiftsActivity::class.java))
+            }
+        }
+        llInbox.setOnClickListener {
+            startActivity(Intent(
+                this@HomeActivity, InboxActivity::class.java))
+        }
+        buttonIssue.setOnClickListener {
+
+            if (PreferenceManager.getUserType(context) == "7") {
+                startActivity(Intent(
+                    this@HomeActivity, IssuePointActivity::class.java))
+            } else if (PreferenceManager.getUserType(context) == "6") {
+                startActivity(Intent(
+                    this@HomeActivity, IssuePointDealerActivity::class.java))
+            }
+        }
+
+        if (PreferenceManager.getUserType(context) == "7"
+            || PreferenceManager.getUserType(context) == "6"
+        ) {
+            buttonIssue.visibility = View.VISIBLE
+            arcProgressStackView.visibility = View.GONE
+            arcProgress.visibility = View.VISIBLE
+            llDescription.visibility = View.GONE
+            // textPoints.setVisibility(View.GONE);
+        } else {
+            buttonIssue.visibility = View.GONE
+            arcProgressStackView.visibility = View.VISIBLE
+            arcProgress.visibility = View.GONE
+            // textPoints.setVisibility(View.VISIBLE);
+            llDescription.visibility = View.VISIBLE
+        }
+        val startColors = resources.getStringArray(R.array.devlight)
+        val bgColors = resources.getStringArray(R.array.bg)
+        // Parse colors
+        for (i in 0 until modelCount) {
+            mStartColors[i] = Color.parseColor(startColors[i])
+            mEndColors[i] = Color.parseColor(bgColors[i])
+        }
+
+    }
     private fun getAppVersion() {
         var appVersionMainResponse: AppVersionMainResponseModel
         var appVersionResponse: com.vkc.bluetyga.activity.home.model.app_version.Response
@@ -290,93 +375,5 @@ class HomeActivity : AppCompatActivity() {
             CustomToast.customToast(context)
             CustomToast.show(58)
         }
-    }
-
-    private fun initialiseUI() {
-        textPoints = findViewById(R.id.textPoints)
-        textNoPoints = findViewById(R.id.textNoPoints)
-        textVersion = findViewById(R.id.textVersion)
-        updateAppView = findViewById(R.id.updateAppView)
-        llDescription = findViewById(R.id.llDescription)
-        llInbox = findViewById(R.id.llInbox)
-        llPoints = findViewById(R.id.llPoints)
-        llGifts = findViewById(R.id.llGifts)
-        llProfile = findViewById(R.id.llProfile)
-        llShop = findViewById(R.id.llShop)
-        arcProgress = findViewById(R.id.arc_progress)
-        arcProgressStackView = findViewById(R.id.arcProgressStackView)
-        buttonIssue = findViewById(R.id.buttonIssue)
-        progressBarDialog = ProgressBarDialog(context)
-
-        arcProgress.suffixText = ""
-        arcProgress.strokeWidth = 15f
-        arcProgress.max = 10000000
-        arcProgress.bottomTextSize = 80f
-        arcProgress.unfinishedStrokeColor = getColor(R.color.white)
-        arcProgress.textColor = getColor(R.color.white)
-        arcProgress.setBackgroundColor(getColor(R.color.transparent))
-
-        llProfile.setOnClickListener {
-            startActivity(Intent(
-                this@HomeActivity, ProfileActivity::class.java))
-        }
-        llPoints.setOnClickListener {
-            startActivity(Intent(
-                this@HomeActivity, PointHistoryActivity::class.java))
-        }
-        llShop.setOnClickListener {
-            startActivity(Intent(
-                this@HomeActivity, ShopImageActivity::class.java))
-        }
-        llGifts.setOnClickListener {
-            if (PreferenceManager.getUserType(context) == "7") {
-                startActivity(Intent(
-                    this@HomeActivity, SubDealerRedeemActivity::class.java))
-            } else if (PreferenceManager.getUserType(context) == "6") {
-                startActivity(Intent(
-                    this@HomeActivity, RedeemListDealerActivity::class.java))
-            } else {
-                startActivity(Intent(
-                    this@HomeActivity, GiftsActivity::class.java))
-            }
-        }
-        llInbox.setOnClickListener {
-            startActivity(Intent(
-                this@HomeActivity, InboxActivity::class.java))
-        }
-        buttonIssue.setOnClickListener {
-
-            if (PreferenceManager.getUserType(context) == "7") {
-                startActivity(Intent(
-                    this@HomeActivity, IssuePointActivity::class.java))
-            } else if (PreferenceManager.getUserType(context) == "6") {
-                startActivity(Intent(
-                    this@HomeActivity, IssuePointDealerActivity::class.java))
-            }
-        }
-
-        if (PreferenceManager.getUserType(context) == "7"
-            || PreferenceManager.getUserType(context) == "6"
-        ) {
-            buttonIssue.visibility = View.VISIBLE
-            arcProgressStackView.visibility = View.GONE
-            arcProgress.visibility = View.VISIBLE
-            llDescription.visibility = View.GONE
-            // textPoints.setVisibility(View.GONE);
-        } else {
-            buttonIssue.visibility = View.GONE
-            arcProgressStackView.visibility = View.VISIBLE
-            arcProgress.visibility = View.GONE
-            // textPoints.setVisibility(View.VISIBLE);
-            llDescription.visibility = View.VISIBLE
-        }
-        val startColors = resources.getStringArray(R.array.devlight)
-        val bgColors = resources.getStringArray(R.array.bg)
-        // Parse colors
-        for (i in 0 until modelCount) {
-            mStartColors[i] = Color.parseColor(startColors[i])
-            mEndColors[i] = Color.parseColor(bgColors[i])
-        }
-
     }
 }

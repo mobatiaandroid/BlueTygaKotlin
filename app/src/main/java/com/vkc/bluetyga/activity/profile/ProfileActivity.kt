@@ -28,7 +28,7 @@ import com.vkc.bluetyga.BuildConfig
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.common.SignUpActivity
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
-import com.vkc.bluetyga.activity.customers.MyCustomersActivity
+import com.vkc.bluetyga.activity.customers.CustomersActivity
 import com.vkc.bluetyga.activity.dealers.DealersActivity
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.Data
@@ -42,7 +42,7 @@ import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
-import com.vkc.loyaltyme.api.ApiClient
+import com.vkc.bluetyga.api.ApiClient
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.FileUtil
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -196,7 +196,7 @@ class ProfileActivity : AppCompatActivity() {
         textMyCustomers.setOnClickListener {
             startActivity(Intent(
                 this@ProfileActivity,
-                MyCustomersActivity::class.java))
+                CustomersActivity::class.java))
         }
     }
 

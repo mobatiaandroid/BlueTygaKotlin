@@ -1,6 +1,5 @@
-package com.vkc.loyaltyme.api
+package com.vkc.bluetyga.api
 
-import com.vkc.bluetyga.api.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

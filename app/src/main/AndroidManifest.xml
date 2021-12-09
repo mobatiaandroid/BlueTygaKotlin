@@ -25,7 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueTygaKotlin">
         <activity
-            android:name=".activity.customers.MyCustomersActivity"
+            android:name=".activity.inbox.InboxDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.customers.CustomersActivity"
             android:exported="true" />
         <activity
             android:name=".activity.issue_point.IssuePointDealerActivity"
@@ -53,7 +56,9 @@
             android:exported="true" />
         <activity
             android:name=".activity.profile.ProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.dealers.DealersActivity"
             android:exported="true"
@@ -101,6 +106,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.vkc.bluetyga.activity.profile.ProfileActivity.provider"
@@ -108,7 +114,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path"/>
+                android:resource="@xml/file_path" />
         </provider>
     </application>
 

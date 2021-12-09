@@ -38,7 +38,7 @@ import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
-import com.vkc.loyaltyme.api.ApiClient
+import com.vkc.bluetyga.api.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -4,6 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.customers.MyCustomersActivity">
+    tools:context=".activity.customers.CustomersActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".55"
+            android:background="@color/header"
+            android:gravity="center"
+            android:text="Customer Name"
+            android:textColor="#fff" />
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textPhone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".25"
+            android:background="@color/header"
+            android:gravity="center"
+            android:text="Phone"
+            android:textColor="#fff" />
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textRole"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".20"
+            android:background="@color/header"
+            android:gravity="center"
+            android:text="Role"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCustomer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

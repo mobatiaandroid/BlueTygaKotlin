@@ -7,11 +7,14 @@ import com.vkc.bluetyga.activity.common.model.resend_otp.ResendOTPMainResponse
 import com.vkc.bluetyga.activity.common.model.state.StateResponseModel
 import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainResponseModel
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
+import com.vkc.bluetyga.activity.customers.model.get_customers.CustomersMainResponseModel
 import com.vkc.bluetyga.activity.dealers.model.assign_dealers.AssignDealersMainResponseModel
 import com.vkc.bluetyga.activity.dealers.model.get_dealers.DealersMainResponseModel
 import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseModel
 import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
+import com.vkc.bluetyga.activity.inbox.model.inbox.NotificationMainResponseModel
+import com.vkc.bluetyga.activity.point_history.model.transaction.TransactionMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.update_profile.UpdateProfileMainResponseModel
@@ -135,13 +138,19 @@ interface ApiService {
         @Field("phone") phone: String
     ): Call<UpdatePhoneOTPMainResponseModel>
 
-//    @FormUrlEncoded
-//    @POST("NotificationsList")
-//    fun getNotificationResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String
-//    ): Call<NotificationModel>
-//
+    @FormUrlEncoded
+    @POST("getMyCustomers")
+    fun getCustomersResponse(
+        @Field("cust_id") customerID: String
+    ): Call<CustomersMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("NotificationsList")
+    fun getNotificationResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
+    ): Call<NotificationMainResponseModel>
+
 //    @FormUrlEncoded
 //    @POST("fetchUserData")
 //    fun getUserResponse(
@@ -164,15 +173,15 @@ interface ApiService {
 //        @Field("points") points: String,
 //        @Field("role") role: String
 //    ): Call<SubmitPointsResponse>
-//
-//    @FormUrlEncoded
-//    @POST("transaction_history")
-//    fun getTransactionHistoryResponse(
-//        @Field("userid") customerID: String,
-//        @Field("role") role: String,
-//        @Field("type") type: String
-//    ): Call<TransactionModel>
-//
+
+    @FormUrlEncoded
+    @POST("transaction_history")
+    fun getTransactionHistoryResponse(
+        @Field("userid") customerID: String,
+        @Field("role") role: String,
+        @Field("type") type: String
+    ): Call<TransactionMainResponseModel>
+
     @Multipart
     @POST("profile_updation")
     fun getUpdateProfileResponse(
