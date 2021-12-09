@@ -7,6 +7,8 @@ import com.vkc.bluetyga.activity.common.model.resend_otp.ResendOTPMainResponse
 import com.vkc.bluetyga.activity.common.model.state.StateResponseModel
 import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainResponseModel
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
+import com.vkc.bluetyga.activity.dealers.model.assign_dealers.AssignDealersMainResponseModel
+import com.vkc.bluetyga.activity.dealers.model.get_dealers.DealersMainResponseModel
 import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseModel
 import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
@@ -109,21 +111,21 @@ interface ApiService {
         @Field("role") role: String
     ): Call<ProfileMainResponseModel>
 
-//    @FormUrlEncoded
-//    @POST("getDealerswithState")
-//    fun getDealersResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String,
-//        @Field("search_key") searchKey: String
-//    ): Call<DealersModel>
-//
-//    @FormUrlEncoded
-//    @POST("assignDealers")
-//    fun getSubmitDealersResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String,
-//        @Field("dealer_id") dealerID: String
-//    ): Call<SubmitDealersModel>
+    @FormUrlEncoded
+    @POST("getDealerswithState")
+    fun getDealersResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String,
+        @Field("search_key") searchKey: String
+    ): Call<DealersMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("assignDealers")
+    fun getSubmitDealersResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String,
+        @Field("dealer_id") dealerID: String
+    ): Call<AssignDealersMainResponseModel>
 //
     @FormUrlEncoded
     @POST("phoneUpdateOTP")

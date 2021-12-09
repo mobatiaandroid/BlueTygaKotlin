@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/drawable/rounded_rect_redline.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_rect_yellow.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_dealers.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_dealers.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_inbox.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_my_customers.xml" value="0.1" />
@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/dialog_otp_alert.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_otp_alert_no_resend.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_update.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/item_dealers_list.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/progress_bar_dialog.xml" value="0.1" />
       </map>
     </option>
