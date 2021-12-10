@@ -1,33 +1,48 @@
 package com.vkc.bluetyga.activity.issue_point
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AppCompatActivity
 import com.vkc.bluetyga.R
+import com.vkc.bluetyga.activity.issue_point.model.submit_points_response.SubmitPointsResponse
+import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.HeaderManager
+import com.vkc.bluetyga.manager.PreferenceManager
+import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
-import org.w3c.dom.Text
+import com.vkc.bluetyga.utils.UtilityMethods
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class IssuePointDealerActivity : AppCompatActivity() {
     lateinit var context: Activity
     lateinit var header: LinearLayout
-    lateinit var headerManager: HeaderManager
-    lateinit var textPoints: TextView
+    private lateinit var headerManager: HeaderManager
+    private lateinit var textPoints: TextView
     lateinit var editPoints: EditText
-    lateinit var buttonReset: Button
-    lateinit var buttonSubmit: Button
-    lateinit var llUserType: LinearLayout
+    private lateinit var buttonReset: Button
+    private lateinit var buttonSubmit: Button
+    private lateinit var llUserType: LinearLayout
     lateinit var userTypeSpinner: Spinner
     lateinit var autoSearch: AutoCompleteTextView
     lateinit var llData: LinearLayout
-    lateinit var textType: TextView
-    lateinit var textID: TextView
-    lateinit var textName: TextView
-    lateinit var textAddress: TextView
-    lateinit var textPhone: TextView
-    lateinit var imageBack: ImageView
+    private lateinit var textType: TextView
+    private lateinit var textID: TextView
+    private lateinit var textName: TextView
+    private lateinit var textAddress: TextView
+    private lateinit var textPhone: TextView
+    private lateinit var imageBack: ImageView
     lateinit var progressBarDialog: ProgressBarDialog
+    var categories: List<String> = arrayListOf("Select User Type","Retailer","Sub Dealer")
+    var selectedID = ""
+    var userType = ""
+    private var point = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_issue_point_dealer)
@@ -60,6 +75,172 @@ class IssuePointDealerActivity : AppCompatActivity() {
             R.drawable.back
         )
         progressBarDialog = ProgressBarDialog(context)
+        llData.visibility = View.GONE
+//        categories.clear()
+//        categories.add("Select User Type")
+//        categories.add("Retailer")
+//        categories.add("Sub Dealer")
+        imageBack.setOnClickListener {
+            finish()
+        }
+        buttonSubmit.setOnClickListener {
+            if (userType == "") {
+                CustomToast.customToast(context)
+                CustomToast.show(49)
+            } else if (autoSearch.text.toString().trim { it <= ' ' } == "") {
+                CustomToast.customToast(context)
+                CustomToast.show(51)
+            } else if (editPoints.text.toString().trim { it <= ' ' } == "") {
+                // VKCUtils.textWatcherForEditText(mEditPoint,
+                // "Mandatory field");
+                CustomToast.customToast(context)
+                CustomToast.show(52)
+            } else if (editPoints.text.toString().trim { it <= ' ' }.toInt() > point) {
+                // FeedbackSubmitApi();
+                CustomToast.customToast(context)
+                CustomToast.show(48)
+            } else {
+                submitPoints()
+            }
+        }
+        buttonReset.setOnClickListener {
+            userTypeSpinner.setSelection(0)
+            userType = ""
+            selectedID = ""
+            autoSearch.setText("")
+            editPoints.setText("")
+            llData.visibility = View.GONE
+        }
+        autoSearch.setOnClickListener {
+            autoSearch.showDropDown()
+        }
+        autoSearch.onItemClickListener = OnItemClickListener { _, _, _, _ -> // TODO Auto-generated method stub
+            val selectedData: String = autoSearch.text.toString()
+            for (i in listUsers.indices) {
+                if (listUsers.get(i).getUserName().equals(selectedData)) {
+                    selectedID = listUsers.get(i).getUserId()
+                    println("Selected Id : $selectedID")
+                    getUserData()
+                    break
+                } else {
+                    selectedID = ""
+                }
+            }
+        }
+        autoSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    /***Do Nothing***/
+                } else {
+                    selectedID = ""
+                    llData.visibility = View.GONE
+                }
+            }
 
+            override fun afterTextChanged(s: Editable) {}
+        })
+        val dataAdapter = ArrayAdapter(
+            context, android.R.layout.simple_spinner_item, categories
+        )
+
+        // Drop down layout style - list view with radio button
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // attaching data adapter to spinner
+
+        // attaching data adapter to spinner
+        userTypeSpinner.adapter = dataAdapter
+        userTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                arg0: AdapterView<*>?, arg1: View, pos: Int,
+                arg3: Long
+            ) {
+                // TODO Auto-generated method stub
+                if (pos > 0) {
+                    if (pos == 1) {
+                        userType = "5"
+                        selectedID = ""
+                        autoSearch.setText("")
+                        // mEditPoint.setText("");
+                        getUsers(userType)
+                    } else {
+                        userType = "7"
+                        selectedID = ""
+                        autoSearch.setText("")
+                        getUsers(userType)
+                    }
+                } else {
+                    userType = ""
+                }
+                println("User Type : $userType")
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>?) {
+                // TODO Auto-generated method stub
+            }
+        }
+        getMyPoints()
+
+    }
+
+    private fun submitPoints() {
+        var submitPointsResponse: SubmitPointsResponse
+        if (UtilityMethods.checkInternet(context)){
+            progressBarDialog.show()
+            ApiClient.getApiService().getSubmitPointsResponse(
+                PreferenceManager.getCustomerID(context),
+                selectedID, userType, editPoints.text.toString(),
+                PreferenceManager.getUserType(context)
+            ).enqueue(object : Callback<SubmitPointsResponse>{
+                override fun onResponse(
+                    call: Call<SubmitPointsResponse>,
+                    response: Response<SubmitPointsResponse>
+                ) {
+                    progressBarDialog.hide()
+                    if (response.body() != null){
+                        submitPointsResponse = response.body()!!
+                        if (submitPointsResponse.response == 1){
+                            CustomToast.customToast(context)
+                            CustomToast.show(18)
+                            autoSearch.setText("")
+                            editPoints.setText("")
+
+                            val dataAdapter = ArrayAdapter(
+                                context,
+                                android.R.layout.simple_spinner_item,
+                                categories
+                            )
+                            dataAdapter
+                                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                            userTypeSpinner.adapter = dataAdapter
+                            getMyPoints()
+                        }else{
+                            CustomToast.customToast(context)
+                            CustomToast.show(67)
+                        }
+                    }else{
+                        CustomToast.customToast(context)
+                        CustomToast.show(0)
+                    }
+                }
+
+                override fun onFailure(call: Call<SubmitPointsResponse>, t: Throwable) {
+                    progressBarDialog.hide()
+                    CustomToast.customToast(context)
+                    CustomToast.show(0)
+                }
+            })
+        }else{
+            CustomToast.customToast(context)
+            CustomToast.show(58)
+        }
+    }
+
+    private fun getUserData() {
+        TODO("Not yet implemented")
     }
 }
