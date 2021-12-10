@@ -71,7 +71,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left|center"
+                        android:gravity="start|center"
                         android:orientation="horizontal">
 
                         <View
@@ -82,8 +82,8 @@
                         <com.vkc.bluetyga.custom_views.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="left"
+                            android:layout_marginStart="10dp"
+                            android:gravity="start"
                             android:text="Coupon Target"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -92,7 +92,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left|center"
+                        android:gravity="start|center"
                         android:orientation="horizontal">
 
                         <View
@@ -103,8 +103,8 @@
                         <com.vkc.bluetyga.custom_views.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="left"
+                            android:layout_marginStart="10dp"
+                            android:gravity="start"
                             android:text="Achieved Percentage"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -172,7 +172,7 @@
                 android:gravity="center"
                 android:text="Points"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/arc_progress" />
@@ -182,9 +182,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="No Coupons Collected, Visit again for updates"
+                android:text="@string/no_coupons_collected_visit_again_for_updates"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -343,9 +343,9 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="Please update app to continue using..."
+            android:text="@string/please_update_app_to_continue_using"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

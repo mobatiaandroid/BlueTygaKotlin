@@ -14,6 +14,9 @@ import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseMo
 import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
 import com.vkc.bluetyga.activity.inbox.model.inbox.NotificationMainResponseModel
+import com.vkc.bluetyga.activity.issue_point.model.fetch_user_data.FetchUserDataMainResponseModel
+import com.vkc.bluetyga.activity.issue_point.model.get_retailers.RetailersMainResponseModel
+import com.vkc.bluetyga.activity.issue_point.model.submit_points_response.SubmitPointsResponse
 import com.vkc.bluetyga.activity.point_history.model.transaction.TransactionMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
@@ -151,28 +154,28 @@ interface ApiService {
         @Field("role") role: String
     ): Call<NotificationMainResponseModel>
 
-//    @FormUrlEncoded
-//    @POST("fetchUserData")
-//    fun getUserResponse(
-//        @Field("cust_id") customerID: String,
-//        @Field("role") role: String
-//    ): Call<UserModel>
-//
-//    @FormUrlEncoded
-//    @POST("getRetailerswithState")
-//    fun getRetailersResponse(
-//        @Field("cust_id") customerID: String
-//    ): Call<TypeModel>
-//
-//    @FormUrlEncoded
-//    @POST("issueLoyalityPoints")
-//    fun getSubmitPointsResponse(
-//        @Field("userid") customerID: String,
-//        @Field("to_user_id") selectedID: String,
-//        @Field("to_role") toRole: String,
-//        @Field("points") points: String,
-//        @Field("role") role: String
-//    ): Call<SubmitPointsResponse>
+    @FormUrlEncoded
+    @POST("fetchUserData")
+    fun getUserResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
+    ): Call<FetchUserDataMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("getRetailerswithState")
+    fun getRetailersResponse(
+        @Field("cust_id") customerID: String
+    ): Call<RetailersMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("issueLoyalityPoints")
+    fun getSubmitPointsResponse(
+        @Field("userid") customerID: String,
+        @Field("to_user_id") selectedID: String,
+        @Field("to_role") toRole: String,
+        @Field("points") points: String,
+        @Field("role") role: String
+    ): Call<SubmitPointsResponse>
 
     @FormUrlEncoded
     @POST("transaction_history")

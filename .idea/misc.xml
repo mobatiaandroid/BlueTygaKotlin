@@ -16,16 +16,21 @@
         <entry key="app/src/main/res/drawable/rounded_rect_yellow.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dealers.xml" value="0.17" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_gifts.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_inbox.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_inbox_details.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_issue_point.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_issue_point_dealer.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_my_customers.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_point_history.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_redeem_list_dealer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_shop_image.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_terms_and_conditions.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_sub_dealer_redeem.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_terms_and_conditions.xml" value="0.12" />
         <entry key="app/src/main/res/layout/common_header_single.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_toast.xml" value="0.67" />
         <entry key="app/src/main/res/layout/dialog_alert.xml" value="0.22" />

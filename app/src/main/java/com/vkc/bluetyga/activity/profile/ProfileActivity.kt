@@ -35,8 +35,8 @@ import com.vkc.bluetyga.activity.profile.model.profile.Data
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.Response
 import com.vkc.bluetyga.activity.profile.model.update_profile.UpdateProfileMainResponseModel
-import com.vkc.bluetyga.manager.GenericKeyEvent
-import com.vkc.bluetyga.manager.GenericTextWatcher
+import com.vkc.bluetyga.utils.GenericKeyEvent
+import com.vkc.bluetyga.utils.GenericTextWatcher
 import com.vkc.bluetyga.manager.HeaderManager
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast

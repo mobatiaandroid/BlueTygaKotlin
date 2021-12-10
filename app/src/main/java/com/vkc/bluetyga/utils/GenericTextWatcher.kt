@@ -1,4 +1,4 @@
-package com.vkc.bluetyga.manager
+package com.vkc.bluetyga.utils
 
 import android.text.Editable
 import android.text.TextWatcher

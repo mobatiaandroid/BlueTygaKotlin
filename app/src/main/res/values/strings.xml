@@ -20,4 +20,6 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="search_by_name">Search by name</string>
     <string name="submit">Submit</string>
+    <string name="no_coupons_collected_visit_again_for_updates">No Coupons Collected, Visit again for updates</string>
+    <string name="please_update_app_to_continue_using">Please update app to continue using...</string>
 </resources>

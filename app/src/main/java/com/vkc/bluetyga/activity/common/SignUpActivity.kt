@@ -32,8 +32,8 @@ import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainRespon
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
 import com.vkc.bluetyga.activity.dealers.DealersActivity
 import com.vkc.bluetyga.activity.home.HomeActivity
-import com.vkc.bluetyga.manager.GenericKeyEvent
-import com.vkc.bluetyga.manager.GenericTextWatcher
+import com.vkc.bluetyga.utils.GenericKeyEvent
+import com.vkc.bluetyga.utils.GenericTextWatcher
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog

@@ -74,7 +74,7 @@
                     android:paddingEnd="20dp"
                     android:singleLine="true"
                     android:textCursorDrawable="@null"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageGetData"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -117,7 +117,7 @@
                     android:paddingEnd="20dp"
                     android:singleLine="true"
                     android:textCursorDrawable="@null"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageSearchID"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -170,15 +170,16 @@
                     android:layout_weight=".90"
                     android:background="@null"
                     android:hint="State"
-                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
                     android:singleLine="true"
                     android:textAllCaps="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
+                    android:layout_gravity="center|start"
                     android:layout_weight=".15"
                     app:srcCompat="@drawable/arrow_down" />
             </LinearLayout>
@@ -195,8 +196,7 @@
                 android:paddingEnd="20dp"
                 android:singleLine="true"
                 android:textCursorDrawable="@null"
-
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editShop"
@@ -209,7 +209,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:singleLine="true"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/llAddress"
@@ -228,7 +228,7 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:singleLine="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editAddress"
@@ -241,7 +241,7 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:singleLine="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                     android:id="@+id/editLandMark"
@@ -254,7 +254,7 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:singleLine="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
@@ -289,12 +289,12 @@
                     android:paddingLeft="15dp"
                     android:singleLine="true"
                     android:textAllCaps="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
+                    android:layout_gravity="center|start"
                     android:layout_weight=".15"
                     app:srcCompat="@drawable/arrow_down" />
             </LinearLayout>
@@ -327,16 +327,17 @@
                     android:layout_weight=".90"
                     android:background="@null"
                     android:hint="District"
-                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
                     android:singleLine="true"
 
                     android:textAllCaps="true"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
+                    android:layout_gravity="center|start"
                     android:layout_weight=".15"
                     app:srcCompat="@drawable/arrow_down" />
             </LinearLayout>
@@ -355,7 +356,7 @@
                 android:singleLine="true"
                 android:textAllCaps="true"
                 android:textCursorDrawable="@null"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <com.vkc.bluetyga.custom_views.CustomEditTextWhite
                 android:id="@+id/editPin"
@@ -368,7 +369,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:singleLine="true"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
 
             <Button
