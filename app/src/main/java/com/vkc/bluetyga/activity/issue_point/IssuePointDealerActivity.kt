@@ -9,6 +9,9 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import com.vkc.bluetyga.R
+import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
+import com.vkc.bluetyga.activity.issue_point.model.get_users.Data
+import com.vkc.bluetyga.activity.issue_point.model.get_users.GetUsersMainResponseModel
 import com.vkc.bluetyga.activity.issue_point.model.submit_points_response.SubmitPointsResponse
 import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.HeaderManager
@@ -42,6 +45,7 @@ class IssuePointDealerActivity : AppCompatActivity() {
     var categories: List<String> = arrayListOf("Select User Type","Retailer","Sub Dealer")
     var selectedID = ""
     var userType = ""
+    var listUsers = ArrayList<Data>()
     private var point = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,8 +121,8 @@ class IssuePointDealerActivity : AppCompatActivity() {
         autoSearch.onItemClickListener = OnItemClickListener { _, _, _, _ -> // TODO Auto-generated method stub
             val selectedData: String = autoSearch.text.toString()
             for (i in listUsers.indices) {
-                if (listUsers.get(i).getUserName().equals(selectedData)) {
-                    selectedID = listUsers.get(i).getUserId()
+                if (listUsers[i].name == selectedData) {
+                    selectedID = listUsers[i].id
                     println("Selected Id : $selectedID")
                     getUserData()
                     break
@@ -185,6 +189,112 @@ class IssuePointDealerActivity : AppCompatActivity() {
         }
         getMyPoints()
 
+    }
+
+    private fun getUsers(userType: String) {
+        var getUsersMainResponseModel: GetUsersMainResponseModel
+        var getUsersResponse: com.vkc.bluetyga.activity.issue_point.model.get_users.Response
+        var getUsersData: ArrayList<Data>
+        if (UtilityMethods.checkInternet(context)){
+            progressBarDialog.show()
+            ApiClient.getApiService().getUsersListResponse(
+                PreferenceManager.getCustomerID(context),
+                userType
+            ).enqueue( object : Callback<GetUsersMainResponseModel>{
+                override fun onResponse(
+                    call: Call<GetUsersMainResponseModel>,
+                    response: Response<GetUsersMainResponseModel>
+                ) {
+                    progressBarDialog.show()
+                    if (response != null){
+                        getUsersMainResponseModel = response.body()!!
+                        getUsersResponse = getUsersMainResponseModel.response
+                        if (getUsersResponse.status == "Success"){
+                            listUsers = getUsersResponse.data
+                            if (listUsers.size > 0){
+                                val listUser = ArrayList<String>()
+                                for (i in listUsers.indices) {
+                                    listUser.add(
+                                        listUsers[i].name)
+                                }
+                                val adapter = ArrayAdapter(
+                                    context,
+                                    android.R.layout.simple_list_item_1,
+                                    listUser
+                                )
+                                autoSearch.threshold = 1
+                                autoSearch.setAdapter<ArrayAdapter<String>>(adapter)
+                            }else{
+                                CustomToast.customToast(context)
+                                CustomToast.show(17)
+                            }
+                        }else{
+                            CustomToast.customToast(context)
+                            CustomToast.show(0)
+                        }
+                    }else{
+                        CustomToast.customToast(context)
+                        CustomToast.show(0)
+                    }
+                }
+
+                override fun onFailure(call: Call<GetUsersMainResponseModel>, t: Throwable) {
+                    progressBarDialog.show()
+                    CustomToast.customToast(context)
+                    CustomToast.show(0)
+                }
+
+            })
+        }else{
+            CustomToast.customToast(context)
+            CustomToast.show(58)
+        }
+    }
+
+    private fun getMyPoints() {
+        var pointsMainResponse: LoyaltyPointsMainResponseModel
+        var pointsResponse: com.vkc.bluetyga.activity.home.model.loyalty_points.Response
+        if (UtilityMethods.checkInternet(context)){
+            progressBarDialog.show()
+            ApiClient.getApiService().getLoyaltyPointsResponse(
+                PreferenceManager.getCustomerID(context),
+                PreferenceManager.getUserType(context)
+            ).enqueue(object : Callback<LoyaltyPointsMainResponseModel>{
+                override fun onResponse(
+                    call: Call<LoyaltyPointsMainResponseModel>,
+                    response: Response<LoyaltyPointsMainResponseModel>
+                ) {
+                    progressBarDialog.hide()
+                    if (response != null){
+                        pointsMainResponse = response.body()!!
+                        pointsResponse = pointsMainResponse.response
+                        if (pointsResponse.status.equals("Success")){
+                            val points: String = pointsResponse.loyality_point
+                            point = points.toInt()
+                            textPoints.text = points
+                        }else{
+                            /***
+                             * Do Nothing
+                             * ***/
+                        }
+                    }else{
+                        CustomToast.customToast(context)
+                        CustomToast.show(0)
+                    }
+                }
+
+                override fun onFailure(call: Call<LoyaltyPointsMainResponseModel>, t: Throwable) {
+                    progressBarDialog.hide()
+                    CustomToast.customToast(context)
+                    CustomToast.show(0)
+                }
+
+
+            })
+        }else{
+            CustomToast.customToast(context)
+            CustomToast.show(58)
+        }
     }
 
     private fun submitPoints() {

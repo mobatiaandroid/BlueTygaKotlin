@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".activity.sub_dealer_redeem.SubDealerRedeemActivity">
 
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight=".35"
+            android:background="@color/header"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Retailer"
+            android:textColor="@color/white" />
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textType"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight=".35"
+            android:background="@color/header"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Gift / Reward"
+            android:textColor="@color/white" />
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textCoupon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight=".15"
+            android:background="@color/header"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Coupon"
+            android:textColor="@color/white" />
+
+        <com.vkc.bluetyga.custom_views.CustomTextView
+            android:id="@+id/textStatus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight=".15"
+            android:background="@color/header"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Quantity"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRedeemList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

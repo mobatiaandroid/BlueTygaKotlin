@@ -13,6 +13,7 @@ class AppController: Application() {
         var transactionData: ArrayList<TransactionHistory> = ArrayList()
         var transactionDetails: ArrayList<IndividualTransaction> = ArrayList()
         var notificationsList: ArrayList<com.vkc.bluetyga.activity.inbox.model.inbox.Data> = ArrayList()
+        var redeemHistoryList: ArrayList<com.vkc.bluetyga.activity.sub_dealer_redeem.model.redeem_history.Data> = ArrayList()
 
 
         fun applicationContext() : AppController {

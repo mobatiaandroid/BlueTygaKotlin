@@ -16,11 +16,17 @@ import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainRe
 import com.vkc.bluetyga.activity.inbox.model.inbox.NotificationMainResponseModel
 import com.vkc.bluetyga.activity.issue_point.model.fetch_user_data.FetchUserDataMainResponseModel
 import com.vkc.bluetyga.activity.issue_point.model.get_retailers.RetailersMainResponseModel
+import com.vkc.bluetyga.activity.issue_point.model.get_users.GetUsersMainResponseModel
 import com.vkc.bluetyga.activity.issue_point.model.submit_points_response.SubmitPointsResponse
 import com.vkc.bluetyga.activity.point_history.model.transaction.TransactionMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.update_profile.UpdateProfileMainResponseModel
+import com.vkc.bluetyga.activity.shop_image.model.delete_image.DeleteImageResponse
+import com.vkc.bluetyga.activity.shop_image.model.get_image.GetImageMainResponseModel
+import com.vkc.bluetyga.activity.shop_image.model.image.ImageModel
+import com.vkc.bluetyga.activity.shop_image.model.upload_image.UploadImageMainResponse
+import com.vkc.bluetyga.activity.sub_dealer_redeem.model.redeem_history.SubDealerRedeemHistoryMainResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -209,4 +215,45 @@ interface ApiService {
         @Part("phone2") mobileNo2: RequestBody,
         @Part("email") email: RequestBody
     ): Call<UpdateProfileMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("getUsers")
+    fun getUsersListResponse(
+        @Part("cust_id") customerID: String,
+        @Part("role") role: String
+    ): Call<GetUsersMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("last_uploaded_image")
+    fun getImageResponse(
+        @Part("cust_id") customerID: String,
+        @Part("role") role: String
+    ): Call<GetImageMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("uploaded_images_history")
+    fun getImageHistoryResponse(
+        @Part("cust_id") customerID: String,
+        @Part("role") role: String
+    ): Call<ImageModel>
+
+    @Multipart
+    @POST("upload_shop_images")
+    fun uploadShopImage(
+        @Part("cust_id") customerID: RequestBody,
+        @Part("role") role: RequestBody,
+        @Part image: MultipartBody.Part
+    ): Call<UploadImageMainResponse>
+
+    @FormUrlEncoded
+    @POST("delete_uploaded_images")
+    fun deleteShopImage(
+        @Part("id") id: String
+    ): Call<DeleteImageResponse>
+
+    @FormUrlEncoded
+    @POST("redeem_historyForSubdealer")
+    fun getRedeemHistoryForSubDealer(
+        @Part("cust_id") customerID: String
+    ): Call<SubDealerRedeemHistoryMainResponse>
 }
