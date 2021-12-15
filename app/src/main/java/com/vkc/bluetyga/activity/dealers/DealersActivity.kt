@@ -169,8 +169,8 @@ class DealersActivity : AppCompatActivity() {
     private fun getDealers(searchKey: String) {
         var dealersMainResponse: DealersMainResponseModel
         var dealersResponse: com.vkc.bluetyga.activity.dealers.model.get_dealers.Response
-        var dealersAssigned: ArrayList<Data> = ArrayList()
-        var dealersNotAssigned: ArrayList<Data> = ArrayList()
+        val dealersAssigned: ArrayList<Data> = ArrayList()
+        val dealersNotAssigned: ArrayList<Data> = ArrayList()
         AppController.dealersList.clear()
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
@@ -189,7 +189,7 @@ class DealersActivity : AppCompatActivity() {
                         dealersResponse = dealersMainResponse.response
                         if (dealersResponse.status == "Success"){
                             for (i in dealersResponse.data.indices){
-                                val tempModel: Data = Data("","","","")
+                                val tempModel = Data("","","","")
                                 tempModel.id = dealersResponse.data[i].id
                                 tempModel.name = dealersResponse.data[i].name
                                 tempModel.role = dealersResponse.data[i].role

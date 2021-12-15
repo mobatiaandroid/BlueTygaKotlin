@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
-import com.vkc.bluetyga.activity.customers.model.get_customers.Data
 import com.vkc.bluetyga.manager.AppController
 
 
-class CustomersListAdapter(var context: Context, var customersList: ArrayList<Data>)
+class CustomersListAdapter(var context: Context)
     : RecyclerView.Adapter<CustomersListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

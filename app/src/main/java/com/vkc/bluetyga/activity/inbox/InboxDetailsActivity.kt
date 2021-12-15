@@ -28,10 +28,10 @@ class InboxDetailsActivity : AppCompatActivity() {
     var position = 0
     var title: String? = null
     var message: String? = null
-    var createdOn: String? = null
+//    var createdOn: String? = null
     var image: String? = null
-    var dateFrom: String? = null
-    var dateTo: String? = null
+//    var dateFrom: String? = null
+//    var dateTo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

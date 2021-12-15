@@ -194,7 +194,6 @@ class IssuePointDealerActivity : AppCompatActivity() {
     private fun getUsers(userType: String) {
         var getUsersMainResponseModel: GetUsersMainResponseModel
         var getUsersResponse: com.vkc.bluetyga.activity.issue_point.model.get_users.Response
-        var getUsersData: ArrayList<Data>
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
             ApiClient.getApiService().getUsersListResponse(
@@ -206,31 +205,26 @@ class IssuePointDealerActivity : AppCompatActivity() {
                     response: Response<GetUsersMainResponseModel>
                 ) {
                     progressBarDialog.show()
-                    if (response != null){
-                        getUsersMainResponseModel = response.body()!!
-                        getUsersResponse = getUsersMainResponseModel.response
-                        if (getUsersResponse.status == "Success"){
-                            listUsers = getUsersResponse.data
-                            if (listUsers.size > 0){
-                                val listUser = ArrayList<String>()
-                                for (i in listUsers.indices) {
-                                    listUser.add(
-                                        listUsers[i].name)
-                                }
-                                val adapter = ArrayAdapter(
-                                    context,
-                                    android.R.layout.simple_list_item_1,
-                                    listUser
-                                )
-                                autoSearch.threshold = 1
-                                autoSearch.setAdapter<ArrayAdapter<String>>(adapter)
-                            }else{
-                                CustomToast.customToast(context)
-                                CustomToast.show(17)
+                    getUsersMainResponseModel = response.body()!!
+                    getUsersResponse = getUsersMainResponseModel.response
+                    if (getUsersResponse.status == "Success"){
+                        listUsers = getUsersResponse.data
+                        if (listUsers.size > 0){
+                            val listUser = ArrayList<String>()
+                            for (i in listUsers.indices) {
+                                listUser.add(
+                                    listUsers[i].name)
                             }
+                            val adapter = ArrayAdapter(
+                                context,
+                                android.R.layout.simple_list_item_1,
+                                listUser
+                            )
+                            autoSearch.threshold = 1
+                            autoSearch.setAdapter<ArrayAdapter<String>>(adapter)
                         }else{
                             CustomToast.customToast(context)
-                            CustomToast.show(0)
+                            CustomToast.show(17)
                         }
                     }else{
                         CustomToast.customToast(context)
@@ -265,21 +259,16 @@ class IssuePointDealerActivity : AppCompatActivity() {
                     response: Response<LoyaltyPointsMainResponseModel>
                 ) {
                     progressBarDialog.hide()
-                    if (response != null){
-                        pointsMainResponse = response.body()!!
-                        pointsResponse = pointsMainResponse.response
-                        if (pointsResponse.status.equals("Success")){
-                            val points: String = pointsResponse.loyality_point
-                            point = points.toInt()
-                            textPoints.text = points
-                        }else{
-                            /***
-                             * Do Nothing
-                             * ***/
-                        }
+                    pointsMainResponse = response.body()!!
+                    pointsResponse = pointsMainResponse.response
+                    if (pointsResponse.status == "Success"){
+                        val points: String = pointsResponse.loyality_point
+                        point = points.toInt()
+                        textPoints.text = points
                     }else{
-                        CustomToast.customToast(context)
-                        CustomToast.show(0)
+                        /***
+                         * Do Nothing
+                         * ***/
                     }
                 }
 

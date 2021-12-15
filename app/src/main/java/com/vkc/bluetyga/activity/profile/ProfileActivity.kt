@@ -61,7 +61,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var headerManager: HeaderManager
     lateinit var imageBack: ImageView
     lateinit var imageProfile: ImageView
-    lateinit var buttonUpdate: Button
+    private lateinit var buttonUpdate: Button
     lateinit var editMobile: EditText
     lateinit var editOwner:EditText
     lateinit var editShop:EditText
@@ -73,11 +73,11 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var editMobile2:EditText
     lateinit var editEmail:EditText
     lateinit var textCustomerID: TextView
-    lateinit var textMyDealers:TextView
-    lateinit var textUpdate:TextView
-    lateinit var textMyCustomers:TextView
+    private lateinit var textMyDealers:TextView
+    private lateinit var textUpdate:TextView
+    private lateinit var textMyCustomers:TextView
     lateinit var progressBarDialog: ProgressBarDialog
-    var filePath = ""
+    private var filePath = ""
     var otpValue = ""
     var name: String = ""
     var owner: String = ""
@@ -89,12 +89,12 @@ class ProfileActivity : AppCompatActivity() {
     var url: String = ""
     var mobile2: String = ""
     var email: String = ""
-    var outputFileUri: Uri? = null
+    private var outputFileUri: Uri? = null
     var profileData: Data? = null
-    lateinit var fileCameraResult: File
-    lateinit var fileGalleryResult: File
-    lateinit var compressCameraResult: File
-    lateinit var compressGalleryResult: File
+    private lateinit var fileCameraResult: File
+    private lateinit var fileGalleryResult: File
+    private lateinit var compressCameraResult: File
+    private lateinit var compressGalleryResult: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -179,7 +179,7 @@ class ProfileActivity : AppCompatActivity() {
         textUpdate.setOnClickListener {
             if (editMobile.text.toString().trim { it <= ' ' }.isNotEmpty()) {
                 if (editMobile.text.toString().trim { it <= ' ' }.length == 10) {
-                    if (PreferenceManager.getMobile(context).equals(editMobile.text.toString().trim { it <= ' ' })) {
+                    if (PreferenceManager.getMobile(context) == editMobile.text.toString().trim { it <= ' ' }) {
                         /***Do Nothing***/
                     } else {
                         alertUpdateMobile(context)
@@ -217,7 +217,7 @@ class ProfileActivity : AppCompatActivity() {
                     if (response.body() != null){
                         profileMainResponse = response.body()!!
                         profileResponse = profileMainResponse.response
-                        if (profileResponse.status.equals("Success")){
+                        if (profileResponse.status == "Success"){
                             profileData = profileResponse.data
                             name = profileData!!.name
                             owner = profileData!!.contact_person
@@ -275,7 +275,7 @@ class ProfileActivity : AppCompatActivity() {
         )
         dialogGetImageFrom.setItems(
             options
-        ) { dialog, which ->
+        ) { _, which ->
             when(which){
                 0 -> {
                     try{
@@ -347,7 +347,7 @@ class ProfileActivity : AppCompatActivity() {
                     if (response.body() != null){
                         updatePhoneOTPMainResponse = response.body()!!
                         updatePhoneOTPResponse = updatePhoneOTPMainResponse.response
-                        if (updatePhoneOTPResponse.status.equals("Success")){
+                        if (updatePhoneOTPResponse.status == "Success"){
                             alertOTPDialog(context)
                         }else{
                             CustomToast.customToast(context)
@@ -453,7 +453,7 @@ class ProfileActivity : AppCompatActivity() {
                     if (response.body() != null){
                         verifyOTPMainResponse = response.body()!!
                         verifyOTPResponse = verifyOTPMainResponse.response
-                        if (verifyOTPResponse.status.equals("Success")){
+                        if (verifyOTPResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(55)
                             val intent = Intent(
@@ -530,7 +530,7 @@ class ProfileActivity : AppCompatActivity() {
 
                         updateProfileMainResponse = response.body()!!
                         updateProfileResponse = updateProfileMainResponse.response
-                        if (updateProfileResponse.status.equals("Success")){
+                        if (updateProfileResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(26)
                         }else{
@@ -565,7 +565,7 @@ class ProfileActivity : AppCompatActivity() {
 
                         updateProfileMainResponse = response.body()!!
                         updateProfileResponse = updateProfileMainResponse.response
-                        if (updateProfileResponse.status.equals("Success")){
+                        if (updateProfileResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(26)
                         }else{

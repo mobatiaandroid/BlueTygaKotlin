@@ -10,10 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.dealer_redeem_list.RedeemReportDetailActivity
-import com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_report.Data
 import com.vkc.bluetyga.manager.AppController
 
-class RedeemReportAdapter(context: Activity, redeemReportData: ArrayList<Data>)
+class RedeemReportAdapter(context: Activity)
     : RecyclerView.Adapter<RedeemReportAdapter.ViewHolder>() {
     var mContext = context
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

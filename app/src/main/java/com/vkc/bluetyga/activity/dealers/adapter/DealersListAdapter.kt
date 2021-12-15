@@ -33,14 +33,14 @@ class DealersListAdapter(var context: Context, var dealersList: ArrayList<Data>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textName!!.text = AppController.dealersList[position].name
-        holder.checkBox!!.setOnCheckedChangeListener { buttonView, isChecked ->
+        holder.checkBox!!.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 AppController.dealersList[position].is_assigned = "1"
             }else{
                 AppController.dealersList[position].is_assigned = "0"
             }
         }
-        holder.checkBox!!.isChecked =dealersList[position].is_assigned.equals("1")
+        holder.checkBox!!.isChecked = dealersList[position].is_assigned == "1"
     }
 
     override fun getItemCount(): Int {

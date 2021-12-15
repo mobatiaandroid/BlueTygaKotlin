@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.manager.AppController
 
-class SubDealerRedeemAdapter(context: Activity,
-                             redeemHistory: ArrayList<com.vkc.bluetyga.activity.sub_dealer_redeem.model.redeem_history.Data>)
+class SubDealerRedeemAdapter(context: Activity)
     : RecyclerView.Adapter<SubDealerRedeemAdapter.ViewHolder>() {
-    var mContext = context
+    private var mContext = context
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var textRetailer: TextView? = null
         var textType: TextView? = null
@@ -49,20 +48,20 @@ class SubDealerRedeemAdapter(context: Activity,
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setContentView(R.layout.dialog_subdealer_history)
 
-            val txt_date = dialog.findViewById<View>(R.id.txt_date) as TextView
-            val txt_type = dialog.findViewById<View>(R.id.txt_type) as TextView
-            val txt_name = dialog.findViewById<View>(R.id.txt_name) as TextView
-            val text_point = dialog.findViewById<View>(R.id.text_point) as TextView
-            val text_quantity = dialog.findViewById<View>(R.id.text_quantity) as TextView
-            val text_dealer = dialog.findViewById<View>(R.id.text_dealer) as TextView
+            val txtDate = dialog.findViewById<View>(R.id.txt_date) as TextView
+            val txtType = dialog.findViewById<View>(R.id.txt_type) as TextView
+            val txtName = dialog.findViewById<View>(R.id.txt_name) as TextView
+            val textPoint = dialog.findViewById<View>(R.id.text_point) as TextView
+            val textQuantity = dialog.findViewById<View>(R.id.text_quantity) as TextView
+            val textDealer = dialog.findViewById<View>(R.id.text_dealer) as TextView
 
             val buttonCancel = dialog.findViewById<View>(R.id.btn_ok) as Button
-            txt_date.text = ": ${AppController.redeemHistoryList[position].date}"
-            txt_type.text = ": ${AppController.redeemHistoryList[position].gift_type}"
-            txt_name.text = ": ${AppController.redeemHistoryList[position].title}"
-            text_point.text = ": ${AppController.redeemHistoryList[position].point}"
-            text_quantity.text = ": ${AppController.redeemHistoryList[position].quantity}"
-            text_dealer.text = ": ${AppController.redeemHistoryList[position].dealer_name}"
+            txtDate.text = ": ${AppController.redeemHistoryList[position].date}"
+            txtType.text = ": ${AppController.redeemHistoryList[position].gift_type}"
+            txtName.text = ": ${AppController.redeemHistoryList[position].title}"
+            textPoint.text = ": ${AppController.redeemHistoryList[position].point}"
+            textQuantity.text = ": ${AppController.redeemHistoryList[position].quantity}"
+            textDealer.text = ": ${AppController.redeemHistoryList[position].dealer_name}"
             buttonCancel.setOnClickListener { dialog.dismiss() }
             dialog.show()
         }

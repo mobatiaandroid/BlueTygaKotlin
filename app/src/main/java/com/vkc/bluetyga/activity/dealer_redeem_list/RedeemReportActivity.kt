@@ -20,7 +20,6 @@ import com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_report.Response
 import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.AppController
 import com.vkc.bluetyga.manager.HeaderManager
-import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
@@ -93,15 +92,13 @@ class RedeemReportActivity : AppCompatActivity() {
                         }
                     }
                      val adapter = RedeemReportAdapter(
-                        context,
-                        tempRedeemReportList
-                    )
+                         context
+                     )
                     adapter.notifyDataSetChanged()
                     recyclerViewRedeemReport.adapter = adapter
                 } else {
                     val adapter = RedeemReportAdapter(
-                        context,
-                        AppController.redeemReportData
+                        context
                     )
                     adapter.notifyDataSetChanged()
                     recyclerViewRedeemReport.adapter = adapter
@@ -144,8 +141,7 @@ class RedeemReportActivity : AppCompatActivity() {
                             }
                             Log.e("size", AppController.redeemReportData.toString())
                             val adapter = RedeemReportAdapter(
-                                context,
-                                AppController.redeemReportData
+                                context
                             )
                             recyclerViewRedeemReport.adapter = adapter
                         }else{

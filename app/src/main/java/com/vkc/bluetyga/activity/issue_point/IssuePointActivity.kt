@@ -39,7 +39,7 @@ class IssuePointActivity : AppCompatActivity() {
     lateinit var llData: LinearLayout
     lateinit var arcProgress: ArcProgress
     lateinit var progressBarDialog: ProgressBarDialog
-    var sampleList = arrayListOf<String>("Dealer","Retailer","Sub-Dealer")
+    var sampleList = arrayListOf("Dealer","Retailer","Sub-Dealer")
     var listRetailers: ArrayList<com.vkc.bluetyga.activity.issue_point.model.get_retailers.Data>? = null
     var selectedId: String? = null
     var myPoint = 0
@@ -103,7 +103,7 @@ class IssuePointActivity : AppCompatActivity() {
         autoSearch.onItemClickListener = AdapterView.OnItemClickListener { _, _, _, _ ->
             val selectedData: String = autoSearch.text.toString()
             for (i in listRetailers!!.indices) {
-                if (listRetailers!![i].name.equals(selectedData)) {
+                if (listRetailers!![i].name == selectedData) {
                     selectedId = listRetailers!![i].id
                     getUserData()
                     break

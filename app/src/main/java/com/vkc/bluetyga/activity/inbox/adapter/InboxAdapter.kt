@@ -44,7 +44,7 @@ class InboxAdapter(var context: Context, var notificationList: ArrayList<Data>)
             holder.imageTile!!.visibility = View.INVISIBLE
         } else {
             holder.imageTile!!.visibility = View.VISIBLE
-            val imageUrl: String? = notificationList[position].image
+            notificationList[position].image
             Glide.with(context).load(notificationList[position].image).into(holder.imageTile!!)
         }
         holder.itemView.setOnClickListener {

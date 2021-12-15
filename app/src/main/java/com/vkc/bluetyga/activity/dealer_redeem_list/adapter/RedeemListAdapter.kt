@@ -1,19 +1,14 @@
 package com.vkc.bluetyga.activity.dealer_redeem_list.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
-import com.vkc.bluetyga.activity.customers.adapter.CustomersListAdapter
-import com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_history_dealer.Detail
-import com.vkc.bluetyga.activity.point_history.adapter.TransactionHistoryAdapter
 import com.vkc.bluetyga.manager.AppController
 
-class RedeemListAdapter(context: Activity, redeemHistoryDetailDealer: ArrayList<Detail>)
+class RedeemListAdapter
     : BaseExpandableListAdapter() {
     override fun getGroupCount(): Int {
         return AppController.redeemHistoryDataDealer.size
@@ -49,14 +44,14 @@ class RedeemListAdapter(context: Activity, redeemHistoryDetailDealer: ArrayList<
         convertView: View?,
         parent: ViewGroup?
     ): View {
-        var convertView = convertView
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent!!.context).inflate(R.layout.item_history_parent, null)
+        var view = convertView
+        if (view == null) {
+            view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_history_parent, null)
         }
-        val textUser = convertView!!.findViewById<View>(R.id.textUser) as TextView
-        val textPoints = convertView
+        val textUser = view!!.findViewById<View>(R.id.textUser) as TextView
+        val textPoints = view
             .findViewById<View>(R.id.textPoint) as TextView
-        val textIcon = convertView.findViewById<View>(R.id.textIcon) as TextView
+        val textIcon = view.findViewById<View>(R.id.textIcon) as TextView
         textPoints.text = "Mobile :${AppController.redeemHistoryDataDealer[groupPosition].phone}"
         textUser.text = AppController.redeemHistoryDataDealer[groupPosition].name
         if (isExpanded) {
@@ -64,7 +59,7 @@ class RedeemListAdapter(context: Activity, redeemHistoryDetailDealer: ArrayList<
         } else {
             textIcon.text = "+"
         }
-        return convertView
+        return view
     }
     internal class ViewHolder {
         var textGiftType: TextView? = null

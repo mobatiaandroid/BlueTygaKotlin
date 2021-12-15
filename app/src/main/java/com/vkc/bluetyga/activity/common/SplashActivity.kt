@@ -49,8 +49,8 @@ class SplashActivity : AppCompatActivity() {
         if (PreferenceManager.getLoginStatusFlag(context).equals("Y")) {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
-        } else if (PreferenceManager.getIsVerifiedOTP(context).equals("Y")) {
-            if (PreferenceManager.getUserType(context).equals("6")) {
+        } else if (PreferenceManager.getIsVerifiedOTP(context) == "Y") {
+            if (PreferenceManager.getUserType(context) == "6") {
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             } else {

@@ -24,7 +24,6 @@ import com.vkc.bluetyga.activity.gifts.model.gift.Vouchers
 import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
-import com.vkc.bluetyga.utils.CustomToast.show
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
 import retrofit2.Call
@@ -221,7 +220,7 @@ class GiftsActivity : AppCompatActivity() {
                                 listVoucher.add("Reward Points")
                                 for (i in giftsVoucher.indices) {
                                     listVoucher.add(
-                                        giftsVoucher[i].voucher_value.toString()
+                                        giftsVoucher[i].voucher_value
                                                 + " ( "
                                                 + giftsVoucher[i].coupon_value
                                                 + " Coupons )")
@@ -317,7 +316,7 @@ class GiftsActivity : AppCompatActivity() {
                         if (cartResponse.status.equals("Success")){
                             val balancePoints: String = cartResponse.balance_points.toString()
                             val totalPoints: String = cartResponse.total_points.toString()
-                            val totalQuantity: String = cartResponse.total_quantity.toString()
+//                            val totalQuantity: String = cartResponse.total_quantity.toString()
                             textBalanceCoupon.text = balancePoints
                             textCartTotal.text = totalPoints
                         }else{

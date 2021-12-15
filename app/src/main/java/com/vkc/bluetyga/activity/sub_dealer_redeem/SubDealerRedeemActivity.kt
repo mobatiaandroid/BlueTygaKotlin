@@ -27,7 +27,6 @@ class SubDealerRedeemActivity : AppCompatActivity() {
     lateinit var recyclerRedeemList: RecyclerView
     lateinit var headerManager: HeaderManager
     lateinit var imageBack: ImageView
-    lateinit var redeemHistory: ArrayList<Data>
     lateinit var progressBarDialog: ProgressBarDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +66,7 @@ class SubDealerRedeemActivity : AppCompatActivity() {
                         redeemHistoryResponse = redeemHistoryMainResponse.response
                         if (redeemHistoryResponse.status == "Success"){
                             AppController.redeemHistoryList = redeemHistoryResponse.data
-                            val adapter = SubDealerRedeemAdapter(context, AppController.redeemHistoryList)
+                            val adapter = SubDealerRedeemAdapter(context)
                             recyclerRedeemList.adapter = adapter
                         }else{
                             CustomToast.customToast(context)

@@ -1,12 +1,11 @@
 package com.vkc.bluetyga.activity.inbox
 
 import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
@@ -61,8 +60,7 @@ class InboxActivity : AppCompatActivity() {
         var notificationMainResponse: NotificationMainResponseModel
         var notificationResponse: Response
         var notificationData: ArrayList<Data>
-        var tempModel = Data("","","", "",
-            "", "","","")
+        var tempModel: Data
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
             ApiClient.getApiService().getNotificationResponse(
@@ -76,7 +74,7 @@ class InboxActivity : AppCompatActivity() {
                     progressBarDialog.hide()
                     notificationMainResponse = response.body()!!
                     notificationResponse = notificationMainResponse.response
-                    if (notificationResponse.status.equals("Success")){
+                    if (notificationResponse.status == "Success"){
                         notificationData = notificationResponse.data
                         if (notificationData.size > 0){
                             for (i in notificationData.indices) {

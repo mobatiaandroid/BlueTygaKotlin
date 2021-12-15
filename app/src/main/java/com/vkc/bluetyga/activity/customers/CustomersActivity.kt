@@ -74,7 +74,7 @@ class CustomersActivity : AppCompatActivity() {
                     if (response.body() != null){
                         customersMainResponse = response.body()!!
                         customersResponse = customersMainResponse.response
-                        if (customersResponse.status.equals("Success")){
+                        if (customersResponse.status == "Success"){
                             if (customersResponse.data.isNotEmpty()){
                                 for (i in customersResponse.data.indices) {
                                     val tempModel: com.vkc.bluetyga.activity.customers.model.get_customers.Data =
@@ -88,7 +88,7 @@ class CustomersActivity : AppCompatActivity() {
                                     tempModel.role = customersResponse.data[i].role
                                     AppController.customersList.add(tempModel)
                                 }
-                                val adapter = CustomersListAdapter(context, AppController.customersList)
+                                val adapter = CustomersListAdapter(context)
                                 customersRecyclerList.adapter = adapter
                             }else{
                                 CustomToast.customToast(context)

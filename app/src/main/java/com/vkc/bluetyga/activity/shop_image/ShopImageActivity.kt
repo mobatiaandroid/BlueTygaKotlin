@@ -63,12 +63,9 @@ class ShopImageActivity : AppCompatActivity() {
     lateinit var progressBarDialog: ProgressBarDialog
     var filePath = ""
     lateinit var imageList: ArrayList<com.vkc.bluetyga.activity.shop_image.model.image.Data>
-    private val destination: File? = null
     var outputFileUri: Uri? = null
     lateinit var fileCameraResult: File
-    lateinit var fileGalleryResult: File
     lateinit var compressCameraResult: File
-    lateinit var compressGalleryResult: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -173,7 +170,7 @@ class ShopImageActivity : AppCompatActivity() {
             .toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val role: RequestBody = PreferenceManager.getUserType(context)
             .toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        var requestFile: RequestBody? = null
+        var requestFile: RequestBody?
         var uploadImageFile: MultipartBody.Part? = null
         val file = File(filePath)
         if (UtilityMethods.checkInternet(context)){
@@ -330,56 +327,51 @@ class ShopImageActivity : AppCompatActivity() {
                     response: retrofit2.Response<ImageModel>
                 ) {
                     progressBarDialog.hide()
-                    if (response != null){
-                        getImageMainResponse = response.body()!!
-                        getImageResponse = getImageMainResponse.response
-                        if (getImageResponse.status == "Success"){
-                            imageList = getImageResponse.data
-                            if (imageList.size > 0){
-                                if (imageList.size > 1){
-                                    if (imageList[0].image != "") {
-                                        viewOne.visibility = View.VISIBLE
-                                        imageOneDelete.visibility = View.VISIBLE
-                                        Glide.with(context).load(imageList[0].image)
-                                            .centerInside().into(imageOne)
-                                    } else {
-                                        viewOne.visibility = View.GONE
-                                        imageOneDelete.visibility = View.GONE
-                                    }
+                    getImageMainResponse = response.body()!!
+                    getImageResponse = getImageMainResponse.response
+                    if (getImageResponse.status == "Success"){
+                        imageList = getImageResponse.data
+                        if (imageList.size > 0){
+                            if (imageList.size > 1){
+                                if (imageList[0].image != "") {
+                                    viewOne.visibility = View.VISIBLE
+                                    imageOneDelete.visibility = View.VISIBLE
+                                    Glide.with(context).load(imageList[0].image)
+                                        .centerInside().into(imageOne)
+                                } else {
+                                    viewOne.visibility = View.GONE
+                                    imageOneDelete.visibility = View.GONE
+                                }
 
-                                    if (imageList[1].image != "") {
-                                        viewTwo.visibility = View.VISIBLE
-                                        imageTwoDelete.visibility = View.VISIBLE
-                                        Glide.with(context).load(imageList[1].image)
-                                            .centerInside().into(imageTwo)
-                                    } else {
-                                        viewTwo.visibility = View.GONE
-                                        imageTwoDelete.visibility = View.GONE
-                                    }
-                                }else{
+                                if (imageList[1].image != "") {
+                                    viewTwo.visibility = View.VISIBLE
+                                    imageTwoDelete.visibility = View.VISIBLE
+                                    Glide.with(context).load(imageList[1].image)
+                                        .centerInside().into(imageTwo)
+                                } else {
                                     viewTwo.visibility = View.GONE
                                     imageTwoDelete.visibility = View.GONE
-                                    if (imageList[0].image != "") {
-                                        viewOne.visibility = View.VISIBLE
-                                        imageOneDelete.visibility = View.VISIBLE
-                                        Glide.with(context).load(imageList[0].image)
-                                            .centerInside().into(imageOne)
-                                    } else {
-                                        viewOne.visibility = View.GONE
-                                        imageOneDelete.visibility = View.GONE
-                                    }
                                 }
                             }else{
-                                viewOne.visibility = View.GONE
-                                imageOneDelete.visibility = View.GONE
                                 viewTwo.visibility = View.GONE
                                 imageTwoDelete.visibility = View.GONE
-                                CustomToast.customToast(context)
-                                CustomToast.show(51)
+                                if (imageList[0].image != "") {
+                                    viewOne.visibility = View.VISIBLE
+                                    imageOneDelete.visibility = View.VISIBLE
+                                    Glide.with(context).load(imageList[0].image)
+                                        .centerInside().into(imageOne)
+                                } else {
+                                    viewOne.visibility = View.GONE
+                                    imageOneDelete.visibility = View.GONE
+                                }
                             }
                         }else{
+                            viewOne.visibility = View.GONE
+                            imageOneDelete.visibility = View.GONE
+                            viewTwo.visibility = View.GONE
+                            imageTwoDelete.visibility = View.GONE
                             CustomToast.customToast(context)
-                            CustomToast.show(0)
+                            CustomToast.show(51)
                         }
                     }else{
                         CustomToast.customToast(context)

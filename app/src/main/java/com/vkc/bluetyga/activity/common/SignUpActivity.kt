@@ -508,7 +508,7 @@ class SignUpActivity : AppCompatActivity() {
                     if (response.body() != null){
                         resendOTPMainResponse = response.body()!!
                         resendOTPResponse = resendOTPMainResponse.response
-                        if (resendOTPResponse.status.equals("Success")){
+                        if (resendOTPResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(34)
                         }else{
@@ -714,9 +714,9 @@ class SignUpActivity : AppCompatActivity() {
                             val city: String = userDetails.city.uppercase()
                             val stateCode: String = userDetails.state
 
-                            if (editCustomer.text.toString().trim().isNotEmpty()) {
-
-                            }
+//                            if (editCustomer.text.toString().trim().isNotEmpty()) {
+//
+//                            }
                             for (i in stateList.indices) {
                                 if (stateList[i].state == stateCode) {
                                     spinnerState.setSelection(i + 1)

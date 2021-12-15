@@ -173,7 +173,7 @@ class HomeActivity : AppCompatActivity() {
                         if (response.body() != null){
                             appVersionMainResponse = response.body()!!
                             appVersionResponse = appVersionMainResponse.response
-                            if (appVersionResponse.status.equals("Success")){
+                            if (appVersionResponse.status == "Success"){
                                 serverVersion = appVersionResponse.appversion
                                 if (serverVersion == getVersion()) {
                                     deviceRegister()
@@ -305,7 +305,7 @@ class HomeActivity : AppCompatActivity() {
                     if (response.body() != null){
                         loyaltyPointsMainResponse = response.body()!!
                         loyaltyPointsResponse = loyaltyPointsMainResponse.response
-                        if (loyaltyPointsResponse.status.equals("Success")){
+                        if (loyaltyPointsResponse.status == "Success"){
                             val points: String = loyaltyPointsResponse.loyality_point
                             giftStatus = loyaltyPointsResponse.gift_status
                             myPoints = points.toInt()

@@ -62,9 +62,9 @@ class GiftsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name!!.text = giftsDataList[position].title
         holder.points!!.text = "Coupons :${giftsDataList[position].point}"
-        val gift_name: String = giftsDataList[position].image.replace(" ", "%20")
-        if (gift_name.isNotEmpty()) {
-            Glide.with(mContext).load(gift_name).centerInside()
+        val giftName: String = giftsDataList[position].image.replace(" ", "%20")
+        if (giftName.isNotEmpty()) {
+            Glide.with(mContext).load(giftName).centerInside()
                 .into(holder.image!!)
         } else {
             Glide.with(mContext).load(R.drawable.gift_default).centerInside()
@@ -155,10 +155,10 @@ class GiftsAdapter(
                     if (response.body() != null){
                         mainResponse = response.body()!!
                         cartResponse = mainResponse.response
-                        if (cartResponse.status.equals("Success")){
+                        if (cartResponse.status == "Success"){
                             val balancePoints: String = cartResponse.balance_points.toString()
                             val totalPoints: String = cartResponse.total_points.toString()
-                            val totalQuantity: String = cartResponse.total_quantity.toString()
+//                            val totalQuantity: String = cartResponse.total_quantity.toString()
                             mTextBalanceCoupon.text = balancePoints
                             mTextCartTotal.text = totalPoints
                         }else{

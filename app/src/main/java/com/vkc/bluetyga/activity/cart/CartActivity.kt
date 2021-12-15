@@ -26,8 +26,8 @@ class CartActivity : AppCompatActivity() {
     lateinit var context: Activity
     lateinit var recyclerCart: RecyclerView
     lateinit var imageBack: ImageView
-    lateinit var imageHistory: ImageView
-    lateinit var buttonOrder: Button
+    private lateinit var imageHistory: ImageView
+    private lateinit var buttonOrder: Button
     lateinit var textCartTotal: TextView
     lateinit var textBalanceCoupon: TextView
     lateinit var textCartQuantity: TextView

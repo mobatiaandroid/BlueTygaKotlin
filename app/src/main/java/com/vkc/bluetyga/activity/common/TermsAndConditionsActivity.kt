@@ -34,7 +34,7 @@ class TermsAndConditionsActivity : AppCompatActivity() {
                 if (PreferenceManager.getLoginStatusFlag(context).equals("Y")){
                     startActivity(Intent(context, HomeActivity::class.java))
                     finish()
-                }else if(PreferenceManager.getIsVerifiedOTP(context).equals("Y")){
+                }else if(PreferenceManager.getIsVerifiedOTP(context) == "Y"){
                     if (PreferenceManager.getDealerCount(context) > 0){
                         startActivity(Intent(context, HomeActivity::class.java))
                         finish()
@@ -51,7 +51,7 @@ class TermsAndConditionsActivity : AppCompatActivity() {
                 CustomToast.show(37)
             }
         }
-        checkTerms.setOnCheckedChangeListener { buttonView, isChecked ->
+        checkTerms.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 PreferenceManager.setAgreeTerms(context, true)
             } else {

@@ -86,9 +86,7 @@ class RedeemListDealerActivity : AppCompatActivity() {
                                     }
                                     AppController.redeemHistoryDataDealer.add(redeemHistoryResponse.data[i])
                                 }
-                                val adapter = RedeemListAdapter(
-                                    context, AppController.redeemHistoryDetailDealer
-                                )
+                                val adapter = RedeemListAdapter()
                                 listViewRedeem.setAdapter(adapter)
                             }else{
 

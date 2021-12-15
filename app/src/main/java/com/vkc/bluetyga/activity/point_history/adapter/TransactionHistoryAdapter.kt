@@ -43,25 +43,25 @@ class TransactionHistoryAdapter :
         isExpanded: Boolean,
         convertView: View?,
         parent: ViewGroup?
-    ): View? {
-        var convertView = convertView
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent!!.context).inflate(R.layout.item_history_parent, null)
+    ): View {
+        var view = convertView
+        if (view == null) {
+            view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_history_parent, null)
         }
-        val textUser = convertView!!.findViewById<View>(R.id.textUser) as TextView
-        val textPoint = convertView.findViewById<View>(R.id.textPoint) as TextView
+        val textUser = view!!.findViewById<View>(R.id.textUser) as TextView
+        val textPoint = view.findViewById<View>(R.id.textPoint) as TextView
 
-        val textIcon = convertView.findViewById<View>(R.id.textIcon) as TextView
+        val textIcon = view.findViewById<View>(R.id.textIcon) as TextView
         textUser.text = AppController.transactionData[groupPosition].to_name
         val points = AppController.transactionData[groupPosition].tot_points
 //        textPoint.text = parent!!.context.getString(R.string.total_coupons, points)
-        textPoint.text = points + " Coupons"
+        textPoint.text = "$points Coupons"
         if (isExpanded) {
             textIcon.text = "-"
         } else {
             textIcon.text = "+"
         }
-        return convertView
+        return view
     }
     internal class ViewHolder {
         var textType: TextView? = null
