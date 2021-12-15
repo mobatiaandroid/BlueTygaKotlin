@@ -752,7 +752,7 @@ class SignUpActivity : AppCompatActivity() {
                                 editPin.setText(pin)
                                 editOwner.isEnabled = true
                                 editShop.isEnabled = false
-                                spinnerDistrict.setEnabled(false)
+                                spinnerDistrict.isEnabled = false
                                 spinnerState.isEnabled = false
                                 editPlace.isEnabled = true
                                 editPin.isEnabled = false

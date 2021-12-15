@@ -29,6 +29,6 @@ internal class CustomTextViewStylish : AppCompatTextView {
     private fun setFont() {
         val font =
             Typeface.createFromAsset(context.assets, "fonts/HighlandGothic.ttf")
-            setTypeface(font, Typeface.NORMAL);
+            setTypeface(font, Typeface.NORMAL)
     }
 }

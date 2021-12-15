@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
                             TermsAndConditionsActivity::class.java
                         )
                     )
-                    activity.overridePendingTransition(0, 0);
+                    activity.overridePendingTransition(0, 0)
                     finish()
                 }
             }

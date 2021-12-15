@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.customers.adapter.CustomersListAdapter
@@ -38,6 +39,11 @@ class CustomersActivity : AppCompatActivity() {
     private fun initialiseUI() {
         header = findViewById(R.id.header)
         customersRecyclerList = findViewById(R.id.recyclerViewCustomer)
+        customersRecyclerList.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
         headerManager = HeaderManager(this@CustomersActivity,
             resources.getString(R.string.dealers))
         headerManager.getHeader(header, 1)

@@ -289,7 +289,7 @@ class ProfileActivity : AppCompatActivity() {
                         outputFileUri = FileProvider.getUriForFile(
                             this,
                             BuildConfig.APPLICATION_ID + "." + localClassName + ".provider",
-                            file);
+                            file)
                         val cameraIntent =
                             Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)

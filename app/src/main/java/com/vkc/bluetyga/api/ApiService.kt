@@ -1,5 +1,8 @@
 package com.vkc.bluetyga.api
 
+import com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.DealerSubDealerMainResponseModel
+import com.vkc.bluetyga.activity.cart.model.delete_cart.DeleteCartMainResponseModel
+import com.vkc.bluetyga.activity.cart.model.edit_cart.EditCartMainResponseModel
 import com.vkc.bluetyga.activity.common.model.district.DistrictResponseModel
 import com.vkc.bluetyga.activity.common.model.new_register.NewRegisterMainResponseModel
 import com.vkc.bluetyga.activity.common.model.register.RegisterMainResponseModel
@@ -8,8 +11,14 @@ import com.vkc.bluetyga.activity.common.model.state.StateResponseModel
 import com.vkc.bluetyga.activity.common.model.user_details.UserDetailsMainResponseModel
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
 import com.vkc.bluetyga.activity.customers.model.get_customers.CustomersMainResponseModel
+import com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_history_dealer.RedeemedGiftsMainResponseModel
+import com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_report.RedeemReportMainResponseModel
 import com.vkc.bluetyga.activity.dealers.model.assign_dealers.AssignDealersMainResponseModel
 import com.vkc.bluetyga.activity.dealers.model.get_dealers.DealersMainResponseModel
+import com.vkc.bluetyga.activity.gifts.model.add_to_cart.AddToCartMainResponseModel
+import com.vkc.bluetyga.activity.gifts.model.cart_count.CartCountResponseModel
+import com.vkc.bluetyga.activity.gifts.model.get_cart.GetCartMainResponseModel
+import com.vkc.bluetyga.activity.gifts.model.gift.GiftsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.app_version.AppVersionMainResponseModel
 import com.vkc.bluetyga.activity.home.model.loyalty_points.LoyaltyPointsMainResponseModel
 import com.vkc.bluetyga.activity.home.model.register_device.RegisterDeviceMainResponseModel
@@ -219,22 +228,22 @@ interface ApiService {
     @FormUrlEncoded
     @POST("getUsers")
     fun getUsersListResponse(
-        @Part("cust_id") customerID: String,
-        @Part("role") role: String
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
     ): Call<GetUsersMainResponseModel>
 
     @FormUrlEncoded
     @POST("last_uploaded_image")
     fun getImageResponse(
-        @Part("cust_id") customerID: String,
-        @Part("role") role: String
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
     ): Call<GetImageMainResponseModel>
 
     @FormUrlEncoded
     @POST("uploaded_images_history")
     fun getImageHistoryResponse(
-        @Part("cust_id") customerID: String,
-        @Part("role") role: String
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
     ): Call<ImageModel>
 
     @Multipart
@@ -248,12 +257,73 @@ interface ApiService {
     @FormUrlEncoded
     @POST("delete_uploaded_images")
     fun deleteShopImage(
-        @Part("id") id: String
+        @Field("id") id: String
     ): Call<DeleteImageResponse>
 
     @FormUrlEncoded
     @POST("redeem_historyForSubdealer")
     fun getRedeemHistoryForSubDealer(
-        @Part("cust_id") customerID: String
+        @Field("cust_id") customerID: String
     ): Call<SubDealerRedeemHistoryMainResponse>
+
+    @FormUrlEncoded
+    @POST("Redeemed_gifts")
+    fun getRedeemHistoryForDealer(
+        @Field("cust_id") customerID: String
+    ): Call<RedeemedGiftsMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("RedeemReportForApp")
+    fun getRedeemReportResponse(
+        @Field("dealerId") dealerID: String
+    ): Call<RedeemReportMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("getGifts")
+    fun getGiftsResponse(
+        @Field("cust_id") customerID: String
+    ): Call<GiftsMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("addGiftsCartItem")
+    fun getAddToCartResponse(
+        @Field("cust_id") customerID: String,
+        @Field("gift_id") giftId: String,
+        @Field("quantity") quantity: String,
+        @Field("gift_type") giftType: String
+    ): Call<AddToCartMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("GiftcartList")
+    fun getCartResponse(
+        @Field("cust_id") customerID: String
+    ): Call<GetCartMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("giftCartCount")
+    fun getCartCountResponse(
+        @Field("cust_id") customerID: String
+    ): Call<CartCountResponseModel>
+
+    @FormUrlEncoded
+    @POST("updateGiftCart")
+    fun getEditCartResponse(
+        @Field("cust_id") customerID: String,
+        @Field("id") giftID: String,
+        @Field("quantity") quantity: String
+    ): Call<EditCartMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("deleteGiftCart")
+    fun getDeleteCartResponse(
+        @Field("cust_id") customerID: String,
+        @Field("ids") deleteIDs: String
+    ): Call<DeleteCartMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("myDealers_Subdealers")
+    fun getDealerAndSubDealersResponse(
+        @Field("cust_id") customerID: String,
+        @Field("role") role: String
+    ): Call<DealerSubDealerMainResponseModel>
 }
