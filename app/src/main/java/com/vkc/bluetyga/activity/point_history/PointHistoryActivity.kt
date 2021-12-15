@@ -135,6 +135,7 @@ class PointHistoryActivity : AppCompatActivity() {
                         textEarnedCouponsRetailer.text = transactionResponse.total_credits
                         textEarnedCouponsSubDealer.text = transactionResponse.total_credits
                         textTransferredCouponsSubDealer.text = transactionResponse.total_debits
+                        textDealerCountRetailer.text = PreferenceManager.getDealerCount(context).toString()
                         textBalance.text = transactionResponse.balance_point
                         if (transactionResponse.status == "Success"){
                             if (transactionResponse.data.size > 0){

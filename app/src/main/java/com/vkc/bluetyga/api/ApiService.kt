@@ -3,6 +3,8 @@ package com.vkc.bluetyga.api
 import com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.DealerSubDealerMainResponseModel
 import com.vkc.bluetyga.activity.cart.model.delete_cart.DeleteCartMainResponseModel
 import com.vkc.bluetyga.activity.cart.model.edit_cart.EditCartMainResponseModel
+import com.vkc.bluetyga.activity.cart.model.place_order.PlaceOrderMainResponseModel
+import com.vkc.bluetyga.activity.cart.model.redeem_history.RedeemHistoryMainModel
 import com.vkc.bluetyga.activity.common.model.district.DistrictResponseModel
 import com.vkc.bluetyga.activity.common.model.new_register.NewRegisterMainResponseModel
 import com.vkc.bluetyga.activity.common.model.register.RegisterMainResponseModel
@@ -31,6 +33,7 @@ import com.vkc.bluetyga.activity.point_history.model.transaction.TransactionMain
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.update_profile.UpdateProfileMainResponseModel
+import com.vkc.bluetyga.activity.redeem.RedeemHistoryActivity
 import com.vkc.bluetyga.activity.shop_image.model.delete_image.DeleteImageResponse
 import com.vkc.bluetyga.activity.shop_image.model.get_image.GetImageMainResponseModel
 import com.vkc.bluetyga.activity.shop_image.model.image.ImageModel
@@ -326,4 +329,19 @@ interface ApiService {
         @Field("cust_id") customerID: String,
         @Field("role") role: String
     ): Call<DealerSubDealerMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("giftsPlaceorder")
+    fun placeOrder(
+        @Field("cust_id") customerID: String,
+        @Field("dealer_id") dealerID: String,
+        @Field("role") role: String,
+        @Field("ids") giftIDs: String
+    ): Call<PlaceOrderMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("redeem_history")
+    fun getRedeemHistory(
+        @Field("cust_id") customerID: String
+    ): Call<RedeemHistoryMainModel>
 }

@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity() {
         arcProgressStackView = findViewById(R.id.arcProgressStackView)
         buttonIssue = findViewById(R.id.buttonIssue)
         progressBarDialog = ProgressBarDialog(context)
-
+        textVersion.text = "Ver. " + getVersion()
         arcProgress.suffixText = ""
         arcProgress.strokeWidth = 15f
         arcProgress.max = 10000000

@@ -1,6 +1,7 @@
 package com.vkc.bluetyga.activity.cart
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -8,15 +9,21 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.cart.adapter.CartListAdapter
 import com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.DealerSubDealerMainResponseModel
 import com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.Response
+import com.vkc.bluetyga.activity.cart.model.place_order.PlaceOrderMainResponseModel
 import com.vkc.bluetyga.activity.gifts.model.get_cart.Data
 import com.vkc.bluetyga.activity.gifts.model.get_cart.GetCartMainResponseModel
+import com.vkc.bluetyga.activity.redeem.RedeemHistoryActivity
 import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
+import com.vkc.bluetyga.utils.CustomToast.show
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
 import retrofit2.Call
@@ -33,6 +40,7 @@ class CartActivity : AppCompatActivity() {
     lateinit var textCartQuantity: TextView
     lateinit var spinnerDealer: Spinner
     lateinit var progressBarDialog: ProgressBarDialog
+    var cartData: ArrayList<Data> = ArrayList()
     var dealerData: ArrayList<com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.Data> = ArrayList()
     var dealerId: String? = null
     var role: String? = null
@@ -54,9 +62,35 @@ class CartActivity : AppCompatActivity() {
         textCartQuantity = findViewById(R.id.textCartQuantity)
         spinnerDealer = findViewById(R.id.spinnerDealer)
         progressBarDialog = ProgressBarDialog(context)
-        imageBack.setOnClickListener {  }
-        buttonOrder.setOnClickListener {  }
-        imageHistory.setOnClickListener {  }
+        imageBack.setOnClickListener {
+            finish()
+        }
+        buttonOrder.setOnClickListener {
+            if (dealerId == "") {
+                CustomToast.customToast(context)
+                CustomToast.show(45)
+            } else if (cartData.size == 0) {
+                CustomToast.customToast(context)
+                CustomToast.show(46)
+            } else {
+                val listOrder = java.util.ArrayList<String>()
+                for (i in cartData.indices) {
+                    listOrder.add(cartData[i].id)
+                }
+                val gson = GsonBuilder().create()
+                val details = gson.toJsonTree(listOrder).asJsonArray
+                placeOrder(details.toString())
+            }
+        }
+        imageHistory.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@CartActivity,
+                    RedeemHistoryActivity::class.java
+                )
+            )
+
+        }
         spinnerDealer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -78,6 +112,59 @@ class CartActivity : AppCompatActivity() {
         }
         getDealers()
         getCartItems()
+    }
+
+    private fun placeOrder(json: String) {
+        var mainResponse: PlaceOrderMainResponseModel
+        var orderResponse: com.vkc.bluetyga.activity.cart.model.place_order.Response
+        if (UtilityMethods.checkInternet(context)){
+            progressBarDialog.show()
+            ApiClient.getApiService().placeOrder(
+                PreferenceManager.getCustomerID(context),
+                dealerId.toString(),
+                role.toString(), json
+            ).enqueue( object : Callback<PlaceOrderMainResponseModel>{
+                override fun onResponse(
+                    call: Call<PlaceOrderMainResponseModel>,
+                    response: retrofit2.Response<PlaceOrderMainResponseModel>
+                ) {
+                    progressBarDialog.hide()
+                    if (response.body() != null){
+                        mainResponse = response.body()!!
+                        orderResponse = mainResponse.response
+                        if (orderResponse.status.equals("Success")){
+                            CustomToast.customToast(context)
+                            CustomToast.show(47)
+                            spinnerDealer.setSelection(0)
+                            dealerId = ""
+                            getCartItems()
+                        }else if (orderResponse.status.equals("scheme_error", ignoreCase = true)){
+                            CustomToast.customToast(context)
+                            CustomToast.show(64)
+                            spinnerDealer.setSelection(0)
+                            dealerId = ""
+                            getCartItems()
+                        }else{
+                            CustomToast.customToast(context)
+                            CustomToast.show(48)
+                        }
+                    }else{
+                        CustomToast.customToast(context)
+                        CustomToast.show(0)
+                    }
+                }
+
+                override fun onFailure(call: Call<PlaceOrderMainResponseModel>, t: Throwable) {
+                    progressBarDialog.hide()
+                    CustomToast.customToast(context)
+                    CustomToast.show(0)
+                }
+
+            })
+        }else{
+            CustomToast.customToast(context)
+            CustomToast.show(58)
+        }
     }
 
     private fun getDealers() {
@@ -142,7 +229,6 @@ class CartActivity : AppCompatActivity() {
     private fun getCartItems() {
         var mainResponse: GetCartMainResponseModel
         var cartResponse: com.vkc.bluetyga.activity.gifts.model.get_cart.Response
-        var cartData: ArrayList<Data>
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
             ApiClient.getApiService().getCartResponse(

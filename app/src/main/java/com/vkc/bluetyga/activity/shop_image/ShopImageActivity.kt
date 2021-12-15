@@ -1,8 +1,10 @@
 package com.vkc.bluetyga.activity.shop_image
 
+import android.Manifest
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -18,6 +20,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.vkc.bluetyga.BuildConfig
@@ -45,6 +49,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import java.io.File
 import java.io.IOException
+import kotlin.Exception
 
 class ShopImageActivity : AppCompatActivity() {
     lateinit var context: Activity
@@ -95,8 +100,34 @@ class ShopImageActivity : AppCompatActivity() {
         imageTwoDelete.visibility = View.GONE
         imageList = ArrayList()
         getImage()
-        imageBack.setOnClickListener { finish() }
-        buttonCapture.setOnClickListener { showCamera() }
+        imageBack.setOnClickListener {
+            finish()
+        }
+        buttonCapture.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        context, Manifest.permission.CAMERA)
+                ) {
+                    ActivityCompat.requestPermissions(
+                        this@ShopImageActivity,
+                        arrayOf(
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        100)
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this@ShopImageActivity,
+                        arrayOf(
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        100)
+                }
+            } else {
+                showCamera()
+            }
+        }
         buttonUpload.setOnClickListener {
             if (filePath == ""){
                 CustomToast.customToast(context)
@@ -219,21 +250,27 @@ class ShopImageActivity : AppCompatActivity() {
     }
 
     private fun showCamera() {
-        val imageFileName =
-            System.currentTimeMillis().toString() + ".jpg"
-        val storageDir: File = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES)
-        filePath = storageDir.absolutePath + "/" + imageFileName
-        Log.e("PICTUREPATH : ", filePath)
-        val file = File(filePath)
-        outputFileUri = FileProvider.getUriForFile(
-            this,
-            BuildConfig.APPLICATION_ID + "." + localClassName + ".provider",
-            file)
-        val cameraIntent =
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
-        startActivityForResult(cameraIntent, 0)
+        try{
+            val imageFileName =
+                System.currentTimeMillis().toString() + ".jpg"
+            val storageDir: File = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES
+            )
+            filePath = storageDir.absolutePath + "/" + imageFileName
+            Log.e("PICTUREPATH : ", filePath)
+            val file = File(filePath)
+            outputFileUri = FileProvider.getUriForFile(
+                this,
+                BuildConfig.APPLICATION_ID + "." + localClassName + ".provider",
+                file
+            )
+            val cameraIntent =
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
+            startActivityForResult(cameraIntent, 0)
+        }catch (e: Exception){
+            Log.e("error",e.toString())
+        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -268,24 +305,28 @@ class ShopImageActivity : AppCompatActivity() {
     private fun getImage() {
         var getImageMainResponse: GetImageMainResponseModel
         var getImageResponse: Response
-        var getImageData: ArrayList<Data>
+        var getImageData: Data
         if(UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
+            Log.e("cust_id",PreferenceManager.getCustomerID(context))
+            Log.e("role",PreferenceManager.getUserType(context))
             ApiClient.getApiService().getImageResponse(
                 PreferenceManager.getCustomerID(context),
                 PreferenceManager.getUserType(context)
+//            "2","5"
             ).enqueue(object : Callback<GetImageMainResponseModel> {
                 override fun onResponse(
                     call: Call<GetImageMainResponseModel>,
                     response: retrofit2.Response<GetImageMainResponseModel>
                 ) {
+                    Log.e("image",response.body().toString())
                     progressBarDialog.hide()
                     if (response.body() != null){
                         getImageMainResponse = response.body()!!
                         getImageResponse = getImageMainResponse.response
                         if (getImageResponse.status == "Success"){
                             getImageData = getImageResponse.data
-                            val imageUrl: String = getImageData[0].image
+                            val imageUrl: String = getImageData.image
                             Glide.with(context).load(imageUrl).placeholder(R.drawable.shop_image)
                                 .into(imageShop)
                             getImageHistory()
@@ -301,6 +342,7 @@ class ShopImageActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<GetImageMainResponseModel>, t: Throwable) {
                     progressBarDialog.hide()
+                    Log.e("throwable", t.toString())
                     CustomToast.customToast(context)
                     CustomToast.show(0)
                 }

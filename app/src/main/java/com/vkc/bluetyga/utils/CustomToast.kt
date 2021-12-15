@@ -14,7 +14,7 @@ object CustomToast {
     lateinit var toast: Toast
 
     fun customToast(mActivity : Activity) {
-        CustomToast.activity = mActivity
+        activity = mActivity
 
         init()
 

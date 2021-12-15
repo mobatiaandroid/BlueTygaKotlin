@@ -25,7 +25,6 @@
             android:padding="10dp"
             android:textColor="#dfdfdf"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +45,10 @@
                 android:id="@+id/llDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:gravity="end"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/arc_progress"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
@@ -147,23 +146,23 @@
                 android:layout_height="250dp"
                 android:background="#00000000"
                 app:arc_bottom_text=""
-                app:arc_text_size="30dp"
                 app:arc_bottom_text_size="60dp"
-                app:layout_constraintBottom_toTopOf="@+id/textPoints"
+                app:arc_text_size="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 app:layout_constraintStart_toStartOf="@id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/llDescription" />
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
 
             <devlight.io.library.ArcProgressStackView
                 android:id="@+id/arcProgressStackView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:visibility="visible"
                 app:apsv_preview_colors="@array/bg"
-                app:layout_constraintBottom_toTopOf="@+id/textPoints"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 app:layout_constraintStart_toStartOf="@id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/llDescription" />
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
 
             <com.vkc.bluetyga.custom_views.CustomTextViewStylish
                 android:id="@+id/textPoints"
@@ -175,7 +174,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arc_progress" />
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
             <com.vkc.bluetyga.custom_views.CustomTextViewBold
                 android:id="@+id/textNoPoints"
