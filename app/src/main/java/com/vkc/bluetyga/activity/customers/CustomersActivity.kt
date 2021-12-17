@@ -45,7 +45,7 @@ class CustomersActivity : AppCompatActivity() {
             false
         )
         headerManager = HeaderManager(this@CustomersActivity,
-            resources.getString(R.string.dealers))
+            resources.getString(R.string.my_customers))
         headerManager.getHeader(header, 1)
         imageBack = headerManager.leftButton!!
         headerManager.setButtonLeftSelector(

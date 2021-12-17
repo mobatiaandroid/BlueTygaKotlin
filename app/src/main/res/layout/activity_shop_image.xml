@@ -93,6 +93,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint1"
             android:layout_width="0dp"
+            android:visibility="visible"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight=".50">
@@ -120,15 +121,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/imageOne"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
                 android:src="@drawable/close"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageOne"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint2"
             android:layout_width="0dp"
+            android:visibility="visible"
             android:layout_height="match_parent"
             android:layout_weight=".50">
 
@@ -155,9 +156,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/imageTwo"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
                 android:src="@drawable/close"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageTwo"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

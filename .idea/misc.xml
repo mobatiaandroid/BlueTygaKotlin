@@ -46,7 +46,7 @@
         <entry key="app/src/main/res/layout/dialog_subdealer_history.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_update.xml" value="0.16" />
         <entry key="app/src/main/res/layout/item_cart_list.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/item_customers_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_customers_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_dealer_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_dealers_list.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/item_grid.xml" value="0.1" />

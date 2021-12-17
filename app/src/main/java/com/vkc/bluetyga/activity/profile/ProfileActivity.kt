@@ -205,10 +205,11 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun checkForChanges() {
-        if (editOwner.text.toString().trim().equals(profileData !!.contact_person) &&
-            editPlace.text.toString().trim().equals(profileData !!.city) &&
-            editMobile2.text.toString().trim().equals(profileData !!.phone2) &&
-            editEmail.text.toString().trim().equals(profileData !!.email)){
+        if (editOwner.text.toString().trim() == profileData !!.contact_person &&
+            editPlace.text.toString().trim() == profileData !!.city &&
+            editMobile2.text.toString().trim() == profileData !!.phone2 &&
+            editEmail.text.toString().trim() == profileData !!.email
+        ){
             val intent = Intent(context, HomeActivity::class.java)
             startActivity(intent)
             finish()
@@ -528,7 +529,7 @@ class ProfileActivity : AppCompatActivity() {
         var updateProfileResponse: com.vkc.bluetyga.activity.profile.model.update_profile.Response
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
-            var requestFile: RequestBody? = null
+            val requestFile: RequestBody?
             var profilePic: MultipartBody.Part? = null
             val file = File(filePath)
             if (file.length() > 0) {
@@ -572,6 +573,7 @@ class ProfileActivity : AppCompatActivity() {
                         if (updateProfileResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(26)
+                            getProfile()
                         }else{
                             CustomToast.customToast(context)
                             CustomToast.show(27)
@@ -681,6 +683,19 @@ class ProfileActivity : AppCompatActivity() {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (editOwner.text.toString().trim() == profileData !!.contact_person &&
+            editPlace.text.toString().trim() == profileData !!.city &&
+            editMobile2.text.toString().trim() == profileData !!.phone2 &&
+            editEmail.text.toString().trim() == profileData !!.email
+        ){
+            val intent = Intent(context,HomeActivity::class.java)
+            startActivity(intent)
+        }else{
+            alertLeaveWithoutUpdate()
         }
     }
 }
