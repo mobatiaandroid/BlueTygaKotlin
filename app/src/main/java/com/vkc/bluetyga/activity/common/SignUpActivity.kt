@@ -841,6 +841,7 @@ class SignUpActivity : AppCompatActivity() {
         }
         dialog.show()
     }
+
 /*
     private fun showAlertDialog(context: Activity, type: String, message: String) {
 
@@ -878,7 +879,6 @@ class SignUpActivity : AppCompatActivity() {
         dialog.show()
     }
 */
-
 
     private fun getState() {
         stateList.clear()
@@ -973,6 +973,5 @@ class SignUpActivity : AppCompatActivity() {
             })
         }
     }
-
 
 }

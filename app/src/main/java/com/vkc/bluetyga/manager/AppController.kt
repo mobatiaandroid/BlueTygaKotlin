@@ -19,6 +19,8 @@ class AppController: Application() {
         var redeemHistoryDetailDealer: ArrayList<Detail> = ArrayList()
         var redeemReportData: ArrayList<com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_report.Data> = ArrayList()
         var redeemReportDetail: ArrayList<com.vkc.bluetyga.activity.dealer_redeem_list.model.redeem_report.Detail> = ArrayList()
+        var retailerData: ArrayList<com.vkc.bluetyga.activity.sub_dealer_redeem.model.sub_dealer_retailer.Data> = ArrayList()
+
 
 
         fun applicationContext() : AppController {

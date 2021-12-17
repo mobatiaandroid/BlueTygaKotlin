@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.sub_dealer_redeem.SubDealerRedeemActivity">
+    tools:context=".activity.sub_dealer_redeem.SubDealerRedeemHistoryActivity">
 
     <LinearLayout
         android:id="@+id/header"
@@ -75,7 +75,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRedeemList"
+        android:id="@+id/recyclerRedeemHistoryList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

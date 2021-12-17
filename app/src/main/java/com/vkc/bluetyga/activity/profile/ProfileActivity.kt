@@ -30,6 +30,7 @@ import com.vkc.bluetyga.activity.common.SignUpActivity
 import com.vkc.bluetyga.activity.common.model.verify_otp.VerifyOTPMainResponseModel
 import com.vkc.bluetyga.activity.customers.CustomersActivity
 import com.vkc.bluetyga.activity.dealers.DealersActivity
+import com.vkc.bluetyga.activity.home.HomeActivity
 import com.vkc.bluetyga.activity.profile.model.phone_update_otp.UpdatePhoneOTPMainResponseModel
 import com.vkc.bluetyga.activity.profile.model.profile.Data
 import com.vkc.bluetyga.activity.profile.model.profile.ProfileMainResponseModel
@@ -144,6 +145,9 @@ class ProfileActivity : AppCompatActivity() {
         buttonUpdate.setOnClickListener {
             updateProfile()
         }
+        imageBack.setOnClickListener {
+            checkForChanges()
+        }
         textMyDealers.setOnClickListener {
             startActivity(
                 Intent(
@@ -198,6 +202,39 @@ class ProfileActivity : AppCompatActivity() {
                 this@ProfileActivity,
                 CustomersActivity::class.java))
         }
+    }
+
+    private fun checkForChanges() {
+        if (editOwner.text.toString().trim().equals(profileData !!.contact_person) &&
+            editPlace.text.toString().trim().equals(profileData !!.city) &&
+            editMobile2.text.toString().trim().equals(profileData !!.phone2) &&
+            editEmail.text.toString().trim().equals(profileData !!.email)){
+            val intent = Intent(context, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }else{
+            alertLeaveWithoutUpdate()
+        }
+    }
+
+    private fun alertLeaveWithoutUpdate() {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_leave_without_update)
+        val textYes = dialog.findViewById<View>(R.id.textYes)
+        val textNo = dialog.findViewById<View>(R.id.textNo)
+        textYes.setOnClickListener {
+            dialog.dismiss()
+            val intent = Intent(context,HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        textNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun getProfile() {
@@ -288,7 +325,9 @@ class ProfileActivity : AppCompatActivity() {
                         val file = File(filePath)
                         outputFileUri = FileProvider.getUriForFile(
                             this,
-                            BuildConfig.APPLICATION_ID + "." + localClassName + ".provider",
+                            BuildConfig.APPLICATION_ID
+//                                    + "." + localClassName
+                                    + ".provider",
                             file)
                         val cameraIntent =
                             Intent(MediaStore.ACTION_IMAGE_CAPTURE)

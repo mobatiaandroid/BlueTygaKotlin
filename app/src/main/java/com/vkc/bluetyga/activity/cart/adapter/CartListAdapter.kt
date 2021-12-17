@@ -217,7 +217,6 @@ class CartListAdapter(
         }
     }
 
-
     private fun editCart(id: String, quantity: String) {
         var mainResponse: EditCartMainResponseModel
         var editCartResponse: Response
@@ -266,9 +265,7 @@ class CartListAdapter(
         }
     }
 
-
-
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+       return mCartData.size
     }
 }

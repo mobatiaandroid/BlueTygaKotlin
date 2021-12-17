@@ -38,7 +38,9 @@ import com.vkc.bluetyga.activity.shop_image.model.delete_image.DeleteImageRespon
 import com.vkc.bluetyga.activity.shop_image.model.get_image.GetImageMainResponseModel
 import com.vkc.bluetyga.activity.shop_image.model.image.ImageModel
 import com.vkc.bluetyga.activity.shop_image.model.upload_image.UploadImageMainResponse
+import com.vkc.bluetyga.activity.sub_dealer_redeem.model.place_order_sub_dealer.OrderSubDealerResponse
 import com.vkc.bluetyga.activity.sub_dealer_redeem.model.redeem_history.SubDealerRedeemHistoryMainResponse
+import com.vkc.bluetyga.activity.sub_dealer_redeem.model.sub_dealer_retailer.SubDealerRetailerMainResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -344,4 +346,18 @@ interface ApiService {
     fun getRedeemHistory(
         @Field("cust_id") customerID: String
     ): Call<RedeemHistoryMainModel>
+
+    @FormUrlEncoded
+    @POST("subDealersGiftRedeemedList")
+    fun getSubDealerAndRetailer(
+        @Field("cust_id") customerID: String
+    ): Call<SubDealerRetailerMainResponseModel>
+
+    @FormUrlEncoded
+    @POST("giftsPlaceorderBySubDealer")
+    fun placeOrderSubDealer(
+        @Field("retailer_ids") retailerIDS: String,
+        @Field("cust_id") customerID: String,
+        @Field("dealer_id") dealerID: String
+    ): Call<OrderSubDealerResponse>
 }

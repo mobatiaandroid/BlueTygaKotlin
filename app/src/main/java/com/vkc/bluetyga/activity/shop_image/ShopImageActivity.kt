@@ -201,7 +201,7 @@ class ShopImageActivity : AppCompatActivity() {
             .toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val role: RequestBody = PreferenceManager.getUserType(context)
             .toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        var requestFile: RequestBody?
+        val requestFile: RequestBody?
         var uploadImageFile: MultipartBody.Part? = null
         val file = File(filePath)
         if (UtilityMethods.checkInternet(context)){
@@ -222,18 +222,34 @@ class ShopImageActivity : AppCompatActivity() {
                         progressBarDialog.hide()
                         imageUploadMainResponse = response.body()!!
                         imageUploadResponse = imageUploadMainResponse.response
-                        if (imageUploadResponse.status == "Success"){
-                            CustomToast.customToast(context)
-                            CustomToast.show(19)
-                            getImageHistory()
-                        }else if (imageUploadResponse.status == "Exceeded"){
-                            CustomToast.customToast(context)
-                            CustomToast.show(20)
-                            getImageHistory()
-                        }else{
-                            CustomToast.customToast(context)
-                            CustomToast.show(0)
+                        when(imageUploadResponse.status){
+                            "Success" -> {
+                                CustomToast.customToast(context)
+                                CustomToast.show(19)
+                                getImageHistory()
+                            }
+                            "Exceeded" -> {
+                                CustomToast.customToast(context)
+                                CustomToast.show(20)
+                                getImageHistory()
+                            }
+                            else -> {
+                                CustomToast.customToast(context)
+                                CustomToast.show(0)
+                            }
                         }
+//                        if (imageUploadResponse.status == "Success"){
+//                            CustomToast.customToast(context)
+//                            CustomToast.show(19)
+//                            getImageHistory()
+//                        }else if (imageUploadResponse.status == "Exceeded"){
+//                            CustomToast.customToast(context)
+//                            CustomToast.show(20)
+//                            getImageHistory()
+//                        }else{
+//                            CustomToast.customToast(context)
+//                            CustomToast.show(0)
+//                        }
                     }
 
                     override fun onFailure(call: Call<UploadImageMainResponse>, t: Throwable) {
@@ -261,7 +277,9 @@ class ShopImageActivity : AppCompatActivity() {
             val file = File(filePath)
             outputFileUri = FileProvider.getUriForFile(
                 this,
-                BuildConfig.APPLICATION_ID + "." + localClassName + ".provider",
+                BuildConfig.APPLICATION_ID
+//                        + "." + localClassName
+                        + ".provider",
                 file
             )
             val cameraIntent =
@@ -294,6 +312,7 @@ class ShopImageActivity : AppCompatActivity() {
                     Glide.with(context).load(outputFileUri).placeholder(R.drawable.profile_image)
                         .into(imageShop)
                     filePath = compressCameraResult.path
+                    Log.e("filepath", filePath)
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }

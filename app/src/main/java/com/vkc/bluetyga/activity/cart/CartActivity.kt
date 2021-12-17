@@ -9,9 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.cart.adapter.CartListAdapter
 import com.vkc.bluetyga.activity.cart.model.dealer_sub_dealer.DealerSubDealerMainResponseModel
@@ -23,7 +21,6 @@ import com.vkc.bluetyga.activity.redeem.RedeemHistoryActivity
 import com.vkc.bluetyga.api.ApiClient
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
-import com.vkc.bluetyga.utils.CustomToast.show
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
 import retrofit2.Call
@@ -132,7 +129,7 @@ class CartActivity : AppCompatActivity() {
                     if (response.body() != null){
                         mainResponse = response.body()!!
                         orderResponse = mainResponse.response
-                        if (orderResponse.status.equals("Success")){
+                        if (orderResponse.status == "Success"){
                             CustomToast.customToast(context)
                             CustomToast.show(47)
                             spinnerDealer.setSelection(0)
@@ -291,4 +288,5 @@ class CartActivity : AppCompatActivity() {
             CustomToast.show(58)
         }
     }
+
 }

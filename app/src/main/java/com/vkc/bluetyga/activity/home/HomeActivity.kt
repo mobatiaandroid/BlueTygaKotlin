@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -16,6 +17,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.github.lzyzsd.circleprogress.ArcProgress
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 import com.google.firebase.messaging.FirebaseMessaging
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.dealer_redeem_list.RedeemListDealerActivity
@@ -31,6 +34,7 @@ import com.vkc.bluetyga.activity.point_history.PointHistoryActivity
 import com.vkc.bluetyga.activity.profile.ProfileActivity
 import com.vkc.bluetyga.activity.shop_image.ShopImageActivity
 import com.vkc.bluetyga.activity.sub_dealer_redeem.SubDealerRedeemActivity
+import com.vkc.bluetyga.activity.sub_dealer_redeem.SubDealerRedeemHistoryActivity
 import com.vkc.bluetyga.manager.PreferenceManager
 import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
@@ -67,6 +71,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         context = this
+        Firebase.initialize(context)
         initialiseUI()
         getAppVersion()
         getMyPoints()
@@ -86,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
         arcProgressStackView = findViewById(R.id.arcProgressStackView)
         buttonIssue = findViewById(R.id.buttonIssue)
         progressBarDialog = ProgressBarDialog(context)
-        textVersion.text = "Ver. " + getVersion()
+        textVersion.text = "Ver. ${getVersion()}"
         arcProgress.suffixText = ""
         arcProgress.strokeWidth = 15f
         arcProgress.max = 10000000
@@ -240,6 +245,7 @@ class HomeActivity : AppCompatActivity() {
             val token = task.result
             PreferenceManager.setToken(context, token)
         })
+        Log.e("Token", PreferenceManager.getToken(context))
         if (UtilityMethods.checkInternet(context)){
             progressBarDialog.show()
             ApiClient.getApiService().getDeviceRegistrationResponse(
