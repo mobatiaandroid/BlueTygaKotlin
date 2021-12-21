@@ -140,11 +140,15 @@ class PointHistoryActivity : AppCompatActivity() {
                         if (transactionResponse.status == "Success"){
                             if (transactionResponse.data.size > 0){
                                 for (i in transactionResponse.data.indices) {
-                                    AppController.transactionData.add(transactionResponse.data[i])
+                                    if (!AppController.transactionData.contains(transactionResponse.data[i])){
+                                        AppController.transactionData.add(transactionResponse.data[i])
+                                    }
                                 }
                                 for (i in AppController.transactionData.indices){
                                     for (j in AppController.transactionData[i].details.indices){
-                                        AppController.transactionDetails.add(AppController.transactionData[i].details[j])
+                                        if (!AppController.transactionDetails.contains(AppController.transactionData[i].details[j])) {
+                                            AppController.transactionDetails.add(AppController.transactionData[i].details[j])
+                                        }
                                     }
                                 }
                                 textDealerCountRetailer.text = AppController.transactionData.size.toString()

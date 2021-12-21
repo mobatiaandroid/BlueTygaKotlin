@@ -714,6 +714,7 @@ class SignUpActivity : AppCompatActivity() {
                             val city: String = userDetails.city.uppercase()
                             val stateCode: String = userDetails.state
 
+
 //                            if (editCustomer.text.toString().trim().isNotEmpty()) {
 //
 //                            }
@@ -745,7 +746,8 @@ class SignUpActivity : AppCompatActivity() {
                                 PreferenceManager.setCustomerID(context, cust_id)
                                 PreferenceManager.setUserType(context, role)
                                 PreferenceManager.setUserID(context, role) // For Dealer
-
+                                Log.e("usertype",PreferenceManager.getUserType(context))
+                                Log.e("androidId", androidID )
                                 editOwner.setText(owner)
                                 editShop.setText(shop_name)
                                 editPlace.setText(city)

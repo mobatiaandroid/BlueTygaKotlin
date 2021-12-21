@@ -40,6 +40,7 @@ import com.vkc.bluetyga.utils.CustomToast
 import com.vkc.bluetyga.utils.ProgressBarDialog
 import com.vkc.bluetyga.utils.UtilityMethods
 import com.vkc.bluetyga.api.ApiClient
+import com.vkc.bluetyga.utils.CustomToast.show
 import devlight.io.library.ArcProgressStackView
 import retrofit2.Call
 import retrofit2.Callback
@@ -109,8 +110,18 @@ class HomeActivity : AppCompatActivity() {
                 this@HomeActivity, PointHistoryActivity::class.java))
         }
         llShop.setOnClickListener {
-            startActivity(Intent(
-                this@HomeActivity, ShopImageActivity::class.java))
+            if (PreferenceManager.getUserType(context).equals("7")
+                || PreferenceManager.getUserType(context).equals("6")
+            ) {
+                CustomToast.customToast(context)
+                CustomToast.show(23)
+            } else {
+                startActivity(
+                    Intent(
+                        this@HomeActivity, ShopImageActivity::class.java
+                    )
+                )
+            }
         }
         llGifts.setOnClickListener {
             if (PreferenceManager.getUserType(context) == "7") {

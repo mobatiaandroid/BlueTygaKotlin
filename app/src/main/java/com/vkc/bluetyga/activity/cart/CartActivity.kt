@@ -70,7 +70,7 @@ class CartActivity : AppCompatActivity() {
                 CustomToast.customToast(context)
                 CustomToast.show(46)
             } else {
-                val listOrder = java.util.ArrayList<String>()
+                val listOrder = ArrayList<String>()
                 for (i in cartData.indices) {
                     listOrder.add(cartData[i].id)
                 }
@@ -184,7 +184,7 @@ class CartActivity : AppCompatActivity() {
                         if (dealerResponse.status == "Success"){
                             if (dealerResponse.data.isNotEmpty()){
                                 dealerData = dealerResponse.data
-                                val listDealer = java.util.ArrayList<String>()
+                                val listDealer = ArrayList<String>()
                                 listDealer.add("Select Dealer")
                                 for (i in dealerData.indices) {
                                     listDealer.add(dealerData[i].name)

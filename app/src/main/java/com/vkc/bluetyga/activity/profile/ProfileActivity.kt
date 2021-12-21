@@ -687,15 +687,19 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (editOwner.text.toString().trim() == profileData !!.contact_person &&
-            editPlace.text.toString().trim() == profileData !!.city &&
-            editMobile2.text.toString().trim() == profileData !!.phone2 &&
-            editEmail.text.toString().trim() == profileData !!.email
-        ){
-            val intent = Intent(context,HomeActivity::class.java)
-            startActivity(intent)
-        }else{
-            alertLeaveWithoutUpdate()
+        try{
+            if (editOwner.text.toString().trim() == profileData!!.contact_person &&
+                editPlace.text.toString().trim() == profileData!!.city &&
+                editMobile2.text.toString().trim() == profileData!!.phone2 &&
+                editEmail.text.toString().trim() == profileData!!.email
+            ) {
+                val intent = Intent(context, HomeActivity::class.java)
+                startActivity(intent)
+            } else {
+                alertLeaveWithoutUpdate()
+            }
+        }catch (e: Exception){
+            Log.e("exception",e.toString())
         }
     }
 }
