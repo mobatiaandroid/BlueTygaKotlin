@@ -153,8 +153,10 @@ class PointHistoryActivity : AppCompatActivity() {
                                 }
                                 textDealerCountRetailer.text = AppController.transactionData.size.toString()
                                 val adapter = TransactionHistoryAdapter()
+                                listViewHistory.visibility = View.VISIBLE
                                 listViewHistory.setAdapter(adapter)
                             }else{
+                                listViewHistory.visibility = View.INVISIBLE
                                 CustomToast.customToast(context)
                                 CustomToast.show(13)
                             }

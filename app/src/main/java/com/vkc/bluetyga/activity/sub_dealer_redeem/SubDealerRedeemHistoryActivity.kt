@@ -41,6 +41,7 @@ class SubDealerRedeemHistoryActivity : AppCompatActivity() {
             HeaderManager(this@SubDealerRedeemHistoryActivity, "Redeem History")
         headerManager.getHeader(header, 1)
         imageBack = headerManager.leftButton!!
+        progressBarDialog = ProgressBarDialog(context)
         imageBack.setOnClickListener { finish() }
 //        redeemHistory = ArrayList()
 

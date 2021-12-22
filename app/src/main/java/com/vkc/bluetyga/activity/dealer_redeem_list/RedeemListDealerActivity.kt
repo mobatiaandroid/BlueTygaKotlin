@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ExpandableListView
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.vkc.bluetyga.R
 import com.vkc.bluetyga.activity.dealer_redeem_list.adapter.RedeemListAdapter
@@ -24,7 +25,7 @@ import retrofit2.Callback
 class RedeemListDealerActivity : AppCompatActivity() {
     lateinit var context: Activity
     lateinit var imageBack: ImageView
-    lateinit var imageConsolidate: ImageView
+    lateinit var llConsolidate: LinearLayout
     lateinit var listViewRedeem: ExpandableListView
     lateinit var progressBarDialog: ProgressBarDialog
     private var lastExpandedPosition = -1
@@ -38,7 +39,7 @@ class RedeemListDealerActivity : AppCompatActivity() {
 
     private fun initialiseUI() {
         imageBack = findViewById(R.id.btn_left)
-        imageConsolidate = findViewById(R.id.consolidate)
+        llConsolidate = findViewById(R.id.consolidate)
         listViewRedeem = findViewById(R.id.listViewRedeem)
         progressBarDialog = ProgressBarDialog(context)
         listViewRedeem
@@ -51,7 +52,7 @@ class RedeemListDealerActivity : AppCompatActivity() {
                 lastExpandedPosition = groupPosition
             }
         imageBack.setOnClickListener { finish() }
-        imageConsolidate.setOnClickListener {
+        llConsolidate.setOnClickListener {
             startActivity(Intent(this@RedeemListDealerActivity,
                 RedeemReportActivity::class.java))
         }
@@ -82,9 +83,18 @@ class RedeemListDealerActivity : AppCompatActivity() {
                             if (redeemHistoryResponse.data.isNotEmpty()){
                                 for ( i in redeemHistoryResponse.data.indices){
                                     for (j in redeemHistoryResponse.data[i].details.indices){
-                                        AppController.redeemHistoryDetailDealer.add(redeemHistoryResponse.data[i].details[j])
+                                        if (!AppController.redeemHistoryDetailDealer.contains(redeemHistoryResponse.data[i].details[j])){
+                                            AppController.redeemHistoryDetailDealer.add(
+                                                redeemHistoryResponse.data[i].details[j]
+                                            )
+                                        }
                                     }
-                                    AppController.redeemHistoryDataDealer.add(redeemHistoryResponse.data[i])
+
+                                    if (!AppController.redeemHistoryDataDealer.contains(redeemHistoryResponse.data[i])){
+                                        AppController.redeemHistoryDataDealer.add(
+                                            redeemHistoryResponse.data[i]
+                                        )
+                                    }
                                 }
                                 val adapter = RedeemListAdapter()
                                 listViewRedeem.setAdapter(adapter)

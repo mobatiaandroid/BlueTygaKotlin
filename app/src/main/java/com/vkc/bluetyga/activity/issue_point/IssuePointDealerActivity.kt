@@ -204,7 +204,7 @@ class IssuePointDealerActivity : AppCompatActivity() {
                     call: Call<GetUsersMainResponseModel>,
                     response: Response<GetUsersMainResponseModel>
                 ) {
-                    progressBarDialog.show()
+                    progressBarDialog.hide()
                     getUsersMainResponseModel = response.body()!!
                     getUsersResponse = getUsersMainResponseModel.response
                     if (getUsersResponse.status == "Success"){

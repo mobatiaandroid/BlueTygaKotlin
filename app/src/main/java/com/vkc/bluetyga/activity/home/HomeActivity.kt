@@ -101,6 +101,9 @@ class HomeActivity : AppCompatActivity() {
         arcProgress.textColor = getColor(R.color.white)
         arcProgress.setBackgroundColor(getColor(R.color.transparent))
 
+        PreferenceManager.setUserType(context,"7")
+        PreferenceManager.setCustomerID(context,"2")
+
         llProfile.setOnClickListener {
             startActivity(Intent(
                 this@HomeActivity, ProfileActivity::class.java))

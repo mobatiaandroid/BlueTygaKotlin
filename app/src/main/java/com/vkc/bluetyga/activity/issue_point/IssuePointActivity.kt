@@ -1,5 +1,6 @@
 package com.vkc.bluetyga.activity.issue_point
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
@@ -40,7 +41,7 @@ class IssuePointActivity : AppCompatActivity() {
     lateinit var arcProgress: ArcProgress
     lateinit var progressBarDialog: ProgressBarDialog
     var sampleList = arrayListOf("Dealer","Retailer","Sub-Dealer")
-    var listRetailers: ArrayList<com.vkc.bluetyga.activity.issue_point.model.get_retailers.Data>? = null
+    var listRetailers: ArrayList<com.vkc.bluetyga.activity.issue_point.model.get_retailers.Data>? = ArrayList()
     var selectedId: String? = null
     var myPoint = 0
     override fun onCreate(savedInstanceState: Bundle?) {

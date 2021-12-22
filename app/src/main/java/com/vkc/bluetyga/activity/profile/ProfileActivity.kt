@@ -205,16 +205,21 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun checkForChanges() {
-        if (editOwner.text.toString().trim() == profileData !!.contact_person &&
-            editPlace.text.toString().trim() == profileData !!.city &&
-            editMobile2.text.toString().trim() == profileData !!.phone2 &&
-            editEmail.text.toString().trim() == profileData !!.email
-        ){
+        try{
+            if (editOwner.text.toString().trim() == profileData!!.contact_person &&
+                editPlace.text.toString().trim() == profileData!!.city &&
+                editMobile2.text.toString().trim() == profileData!!.phone2 &&
+                editEmail.text.toString().trim() == profileData!!.email
+            ) {
+                val intent = Intent(context, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                alertLeaveWithoutUpdate()
+            }
+        }catch (e: Exception){
             val intent = Intent(context, HomeActivity::class.java)
             startActivity(intent)
-            finish()
-        }else{
-            alertLeaveWithoutUpdate()
         }
     }
 
@@ -699,6 +704,8 @@ class ProfileActivity : AppCompatActivity() {
                 alertLeaveWithoutUpdate()
             }
         }catch (e: Exception){
+            val intent = Intent(context, HomeActivity::class.java)
+            startActivity(intent)
             Log.e("exception",e.toString())
         }
     }
