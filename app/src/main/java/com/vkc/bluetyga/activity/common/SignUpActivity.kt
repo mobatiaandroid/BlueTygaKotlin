@@ -766,8 +766,6 @@ class SignUpActivity : AppCompatActivity() {
                                 CustomToast.customToast(context)
                                 CustomToast.show(29)
                             }
-
-
                         } else if (userDetailsResponse.status.equals("Empty")) {
                             isNewReg = true
                             editOwner.isEnabled = true

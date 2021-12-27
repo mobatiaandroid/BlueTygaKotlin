@@ -6,44 +6,34 @@ import android.content.SharedPreferences
 class PreferenceManager {
     companion object {
         const val PREFS_NAME = "VKC"
-        const val PREFS_KEY_TYPE = "type"
-        const val PREFS_KEY_OFFER = "offer"
-        const val PREFS_KEY_SIZE = "size"
-        const val PREFS_KEY_COLOR = "color"
-        const val PREFS_KEY_PRICE = "price_range"
-        const val PREFS_REG_ID = "Regid"
-        const val PREFS_FILTER_DATACATEGORY = "category"
-        const val PREFS_FILTER_DATASIZE = "sizefilter"
-        const val PREFS_FILTER_DATAOFFER = "offerfilter"
-        const val PREFS_FILTER_DATABRAND = "brandfilter"
-        const val PREFS_FILTER_DATAPRICE = "pricefilter"
-        const val PREFS_FILTER_DATACOLOR = "colorfilter"
-        const val PREFS_BANNE_RESPONSE = "BannerResponse"
+        private const val USERTYPE = "usertype"
+        private const val USERID = "userid"
 
-        const val PREFS_TOP_SLIDER = "top_slider"
-        const val PREFS_BOTTOM_SLIDER = "bottom_slider"
-
-        const val IDS_FOR_OFFER = "idsforoffer"
-        const val OFFER_IDS = "offer_ids"
-
-        const val LISTING_OPTION = "lising_option"
-
-        const val BRAND_BANNER = "BrandBanner"
-
-        const val LIST_TYPE = "ListType"
-
-        const val BRAND_ID_FOR_SEARCH = "brand_id_for_search"
-
-        const val MAIN_CATEGORY = "MAIN_CATEGORY"
-        const val SUB_CATEGORY_ID = "SUB_CATEGORY_ID"
-
-        const val PRODUCT_LIST_SORTOPTION = "PRODUCT_LIST_SORTOPTION"
-
-        const val USERTYPE = "usertype"
-
-        const val USERID = "userid"
-
-        const val USERNAME = "username"
+//        const val PREFS_KEY_TYPE = "type"
+//        const val PREFS_KEY_OFFER = "offer"
+//        const val PREFS_KEY_SIZE = "size"
+//        const val PREFS_KEY_COLOR = "color"
+//        const val PREFS_KEY_PRICE = "price_range"
+//        const val PREFS_REG_ID = "Regid"
+//        const val PREFS_FILTER_DATACATEGORY = "category"
+//        const val PREFS_FILTER_DATASIZE = "sizefilter"
+//        const val PREFS_FILTER_DATAOFFER = "offerfilter"
+//        const val PREFS_FILTER_DATABRAND = "brandfilter"
+//        const val PREFS_FILTER_DATAPRICE = "pricefilter"
+//        const val PREFS_FILTER_DATACOLOR = "colorfilter"
+//        const val PREFS_BANNE_RESPONSE = "BannerResponse"
+//        const val PREFS_TOP_SLIDER = "top_slider"
+//        const val PREFS_BOTTOM_SLIDER = "bottom_slider"
+//        const val IDS_FOR_OFFER = "idsforoffer"
+//        const val OFFER_IDS = "offer_ids"
+//        const val LISTING_OPTION = "lising_option"
+//        const val BRAND_BANNER = "BrandBanner"
+//        const val LIST_TYPE = "ListType"
+//        const val BRAND_ID_FOR_SEARCH = "brand_id_for_search"
+//        const val MAIN_CATEGORY = "MAIN_CATEGORY"
+//        const val SUB_CATEGORY_ID = "SUB_CATEGORY_ID"
+//        const val PRODUCT_LIST_SORTOPTION = "PRODUCT_LIST_SORTOPTION"
+//        const val USERNAME = "username"
 
         fun getLoginStatusFlag(context: Context): String? {
             val text: String?
